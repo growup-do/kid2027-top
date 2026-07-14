@@ -1,23 +1,26 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
 
-const NAV_LINKS = [
-  { href: "#report", label: "2026 Report", accent: true },
-  { href: "#contents", label: "Session / Timetable", accent: false },
-  { href: "#contents", label: "KID Startup Pitch", accent: false },
-  { href: "#partners", label: "Exhibitors & Event", accent: false },
+// 現在表示中のページ（対応するナビをアクセント色で表示）
+export type ActiveNav = "report" | "session" | "area";
+
+// KID Startup Pitch は今後追加予定のため意図的に除外（README 指示）
+const NAV_LINKS: { href: string; label: string; active: ActiveNav }[] = [
+  { href: "/#report", label: "2026 Report", active: "report" },
+  { href: "/session", label: "Session / Timetable", active: "session" },
+  { href: "/area", label: "Exhibitors & Event", active: "area" },
 ];
 
-export default function Header() {
+export default function Header({ active }: { active?: ActiveNav }) {
   const [menuOpen, setMenuOpen] = useState(false);
-
   const close = () => setMenuOpen(false);
 
   return (
     <header className="header">
       <div className="wrap header__inner">
-        <div className="header__brand">
+        <Link href="/" className="header__brand" aria-label="トップへ">
           <div className="wf-ph" style={{ width: 110, height: 36 }}>
             神奈川県ロゴ
           </div>
@@ -35,21 +38,22 @@ export default function Header() {
           >
             KID ロゴ
           </div>
-        </div>
+        </Link>
 
         <nav className="navlinks" aria-label="グローバルナビゲーション">
           {NAV_LINKS.map((l) => (
-            <a
+            <Link
               key={l.label}
               href={l.href}
-              className={l.accent ? "is-accent" : undefined}
+              className={active === l.active ? "is-accent" : undefined}
+              aria-current={active === l.active ? "page" : undefined}
             >
               {l.label}
-            </a>
+            </Link>
           ))}
-          <a href="#outline" className="wf-btnf">
+          <Link href="/#outline" className="wf-btnf">
             参加登録
-          </a>
+          </Link>
         </nav>
 
         <button
@@ -70,18 +74,19 @@ export default function Header() {
       <div id="mobile-drawer" className={`drawer${menuOpen ? " is-open" : ""}`}>
         <nav className="wrap drawer__inner" aria-label="モバイルナビゲーション">
           {NAV_LINKS.map((l) => (
-            <a
+            <Link
               key={l.label}
               href={l.href}
-              className={l.accent ? "is-accent" : undefined}
+              className={active === l.active ? "is-accent" : undefined}
+              aria-current={active === l.active ? "page" : undefined}
               onClick={close}
             >
               {l.label}
-            </a>
+            </Link>
           ))}
-          <a href="#outline" className="wf-btnf drawer__cta" onClick={close}>
+          <Link href="/#outline" className="wf-btnf drawer__cta" onClick={close}>
             参加登録
-          </a>
+          </Link>
         </nav>
       </div>
     </header>

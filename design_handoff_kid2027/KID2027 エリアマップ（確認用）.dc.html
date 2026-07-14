@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;background:#fff;font-family:"Zen Kaku Gothic New",system-ui,sans-serif;color:#2a2a2a}
+  a{color:#2a63d6;text-decoration:none}
+  a:hover{color:#1a49a8}
+  .wrap{max-width:1180px;margin:0 auto;padding-left:40px;padding-right:40px}
+  .wf-ph{background:linear-gradient(135deg,transparent calc(50% - .6px),#cdcac2 50%,transparent calc(50% + .6px)),linear-gradient(45deg,transparent calc(50% - .6px),#cdcac2 50%,transparent calc(50% + .6px)),#eeece6;border:1px dashed #bdbab2;display:flex;align-items:center;justify-content:center;font:600 11px "JetBrains Mono",monospace;color:#8a877f;letter-spacing:.05em}
+  .wf-btnf{display:inline-flex;align-items:center;gap:6px;background:#3a3a3a;color:#fff;border-radius:26px;padding:10px 20px;font:600 12px sans-serif}
+  .wf-btn{display:inline-flex;align-items:center;gap:6px;border:1.5px solid #4a4a4a;border-radius:26px;padding:9px 18px;font:600 12px sans-serif;color:#3a3a3a}
+  .h2{font:900 26px 'Zen Kaku Gothic New',sans-serif;margin:0 0 20px}
+  .sect{padding-top:40px;padding-bottom:40px;border-bottom:1px solid #ececec}
+  @media(max-width:900px){.wrap{padding-left:20px;padding-right:20px}.navlinks{display:none !important}.hamb{display:flex !important}.zonegrid{grid-template-columns:repeat(2,1fr) !important}.exgrid{grid-template-columns:repeat(4,1fr) !important}}
+  @media(max-width:520px){.zonegrid{grid-template-columns:1fr !important}.exgrid{grid-template-columns:repeat(3,1fr) !important}}
+</style>
+</helmet>
+
+<!-- HEADER -->
+<header style="position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid #ececec">
+  <div class="wrap" style="height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px">
+    <a href="KID2027 トップページ（確認用）.dc.html" style="display:flex;align-items:center;gap:12px">
+      <div class="wf-ph" style="width:110px;height:36px">神奈川県ロゴ</div>
+      <div style="width:1px;height:26px;background:#ddd"></div>
+      <div class="wf-ph" style="width:74px;height:30px;border-style:solid;border-color:#4a4a4a;color:#4a4a4a;background:#fff">KID ロゴ</div>
+    </a>
+    <div class="navlinks" style="display:flex;align-items:center;gap:20px">
+      <a href="KID2027 トップページ（確認用）.dc.html#report" style="font:600 13px sans-serif;color:#3a3a3a">2026 Report</a>
+      <a href="KID2027 セッション（確認用）.dc.html" style="font:600 13px sans-serif;color:#3a3a3a">Session / Timetable</a>
+      <a href="KID2027 エリアマップ（確認用）.dc.html" style="font:600 13px sans-serif;color:#2a63d6">Exhibitors &amp; Event</a>
+      <a href="KID2027 トップページ（確認用）.dc.html#outline" class="wf-btnf">参加登録</a>
+    </div>
+    <div class="hamb" style="display:none;flex-direction:column;gap:4px;cursor:pointer"><span style="width:24px;height:2px;background:#3a3a3a"></span><span style="width:24px;height:2px;background:#3a3a3a"></span><span style="width:24px;height:2px;background:#3a3a3a"></span></div>
+  </div>
+</header>
+
+<!-- PAGE HEAD -->
+<section style="background:#f4f2ec;border-bottom:1px solid #ececec">
+  <div class="wrap" style="padding-top:34px;padding-bottom:30px">
+    <div style="font:700 12px 'JetBrains Mono',monospace;color:#2a63d6;letter-spacing:.1em;margin-bottom:8px">EXHIBITORS &amp; EVENT</div>
+    <h1 style="font:900 30px 'Zen Kaku Gothic New',sans-serif;margin:0 0 10px">会場エリアマップ・出展社</h1>
+    <p style="font:400 13px/1.8 sans-serif;color:#5a574f;margin:0;max-width:820px">会場フロアマップと出展社一覧をご確認ください。※内容は仮です。</p>
+  </div>
+</section>
+
+<!-- FLOOR MAP -->
+<section class="sect"><div class="wrap">
+  <h2 class="h2">FLOOR MAP</h2>
+  <div class="wf-ph" style="width:100%;height:420px;border-radius:10px">会場フロアマップ（別途制作）？</div>
+</div></section>
+
+<!-- EXHIBITORS -->
+<section class="sect"><div class="wrap">
+  <h2 class="h2">EXHIBITORS</h2>
+
+  <!-- Innovation Partner (largest) -->
+  <div style="margin-bottom:30px">
+    <div style="font:800 15px 'JetBrains Mono',monospace;color:#2a63d6;margin-bottom:12px;letter-spacing:.02em">Innovation Partner</div>
+    <div class="wf-ph" style="width:100%;height:150px;border-radius:8px">出展社ロゴ</div>
+  </div>
+
+  <!-- Gold -->
+  <div style="margin-bottom:26px">
+    <div style="font:800 14px 'JetBrains Mono',monospace;color:#9a7a1f;margin-bottom:12px">Gold</div>
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px" class="exgrid">
+      <div class="wf-ph" style="height:100px">出展社ロゴ</div><div class="wf-ph" style="height:100px">出展社ロゴ</div><div class="wf-ph" style="height:100px">出展社ロゴ</div>
+    </div>
+  </div>
+
+  <!-- Silver -->
+  <div style="margin-bottom:26px">
+    <div style="font:800 14px 'JetBrains Mono',monospace;color:#8a8f99;margin-bottom:12px">Silver</div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:12px" class="exgrid">
+      <div class="wf-ph" style="height:80px">出展社ロゴ</div><div class="wf-ph" style="height:80px">出展社ロゴ</div><div class="wf-ph" style="height:80px">出展社ロゴ</div><div class="wf-ph" style="height:80px">出展社ロゴ</div>
+    </div>
+  </div>
+
+  <!-- Bronze -->
+  <div style="margin-bottom:26px">
+    <div style="font:800 14px 'JetBrains Mono',monospace;color:#a9713f;margin-bottom:12px">Bronze</div>
+    <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:12px" class="exgrid">
+      <div class="wf-ph" style="height:64px">出展社ロゴ</div><div class="wf-ph" style="height:64px">出展社ロゴ</div><div class="wf-ph" style="height:64px">出展社ロゴ</div><div class="wf-ph" style="height:64px">出展社ロゴ</div><div class="wf-ph" style="height:64px">出展社ロゴ</div><div class="wf-ph" style="height:64px">出展社ロゴ</div>
+    </div>
+  </div>
+
+  <!-- Start Up & SMB Gold -->
+  <div style="margin-bottom:26px">
+    <div style="font:800 14px 'JetBrains Mono',monospace;color:#9a7a1f;margin-bottom:12px">Start Up &amp; SMB Gold</div>
+    <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:12px" class="exgrid">
+      <div class="wf-ph" style="height:64px">出展社ロゴ</div><div class="wf-ph" style="height:64px">出展社ロゴ</div><div class="wf-ph" style="height:64px">出展社ロゴ</div><div class="wf-ph" style="height:64px">出展社ロゴ</div><div class="wf-ph" style="height:64px">出展社ロゴ</div><div class="wf-ph" style="height:64px">出展社ロゴ</div><div class="wf-ph" style="height:64px">出展社ロゴ</div><div class="wf-ph" style="height:64px">出展社ロゴ</div>
+    </div>
+  </div>
+
+  <!-- Start Up & SMB Bronze -->
+  <div style="margin-bottom:26px">
+    <div style="font:800 14px 'JetBrains Mono',monospace;color:#a9713f;margin-bottom:12px">Start Up &amp; SMB Bronze</div>
+    <div style="display:grid;grid-template-columns:repeat(8,1fr);gap:10px" class="exgrid">
+      <div class="wf-ph" style="height:52px;font-size:9px">出展社ロゴ</div><div class="wf-ph" style="height:52px;font-size:9px">出展社ロゴ</div><div class="wf-ph" style="height:52px;font-size:9px">出展社ロゴ</div><div class="wf-ph" style="height:52px;font-size:9px">出展社ロゴ</div><div class="wf-ph" style="height:52px;font-size:9px">出展社ロゴ</div><div class="wf-ph" style="height:52px;font-size:9px">出展社ロゴ</div><div class="wf-ph" style="height:52px;font-size:9px">出展社ロゴ</div><div class="wf-ph" style="height:52px;font-size:9px">出展社ロゴ</div>
+    </div>
+  </div>
+
+  <!-- Supporter -->
+  <div style="margin-bottom:26px">
+    <div style="font:800 14px 'JetBrains Mono',monospace;color:#7a776f;margin-bottom:12px">Supporter</div>
+    <div style="display:grid;grid-template-columns:repeat(10,1fr);gap:8px" class="exgrid">
+      <div class="wf-ph" style="height:40px;font-size:8px">ロゴ</div><div class="wf-ph" style="height:40px;font-size:8px">ロゴ</div><div class="wf-ph" style="height:40px;font-size:8px">ロゴ</div><div class="wf-ph" style="height:40px;font-size:8px">ロゴ</div><div class="wf-ph" style="height:40px;font-size:8px">ロゴ</div><div class="wf-ph" style="height:40px;font-size:8px">ロゴ</div><div class="wf-ph" style="height:40px;font-size:8px">ロゴ</div><div class="wf-ph" style="height:40px;font-size:8px">ロゴ</div><div class="wf-ph" style="height:40px;font-size:8px">ロゴ</div><div class="wf-ph" style="height:40px;font-size:8px">ロゴ</div>
+    </div>
+  </div>
+
+  <!-- Kanagawa Startup Showcase -->
+  <div>
+    <div style="font:800 14px 'JetBrains Mono',monospace;color:#188a5a;margin-bottom:12px">Kanagawa Startup Showcase</div>
+    <div style="display:grid;grid-template-columns:repeat(6,1fr);gap:12px" class="exgrid">
+      <div class="wf-ph" style="height:64px">出展社ロゴ</div><div class="wf-ph" style="height:64px">出展社ロゴ</div><div class="wf-ph" style="height:64px">出展社ロゴ</div><div class="wf-ph" style="height:64px">出展社ロゴ</div><div class="wf-ph" style="height:64px">出展社ロゴ</div><div class="wf-ph" style="height:64px">出展社ロゴ</div><div class="wf-ph" style="height:64px">出展社ロゴ</div><div class="wf-ph" style="height:64px">出展社ロゴ</div><div class="wf-ph" style="height:64px">出展社ロゴ</div><div class="wf-ph" style="height:64px">出展社ロゴ</div><div class="wf-ph" style="height:64px">出展社ロゴ</div><div class="wf-ph" style="height:64px">出展社ロゴ</div>
+    </div>
+  </div>
+
+</div></section>
+
+<!-- SPONSOR BOOTH / SIDE EVENT BANNER -->
+<section class="sect"><div class="wrap">
+  <div style="background:#eef2fb;border:1px dashed #b9caf0;border-radius:8px;overflow:hidden">
+    <div class="wf-ph" style="width:100%;height:70px;border:none;border-bottom:1px dashed #b9caf0;color:#8aa0cf">協賛ブース出展・サイドイベント・協賛グッズ 受付中 ｜ バナー</div>
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:20px;padding:16px 22px;flex-wrap:wrap" class="maprow">
+      <div style="flex:1;min-width:220px"><div style="font:900 16px sans-serif;margin-bottom:4px">協賛ブース出展・サイドイベント・協賛グッズ 受付中</div><div style="font:400 11.5px sans-serif;color:#5a574f">KID2027 の出展・サイドイベント・グッズを受付中です。</div></div>
+      <span class="wf-btnf" style="flex:none">お申込みはこちら</span>
+    </div>
+  </div>
+</div></section>
+
+<!-- FOOTER -->
+<footer style="padding:30px 0;background:#2f2f2f;color:#e5e3dd"><div class="wrap">
+  <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:30px;flex-wrap:wrap">
+    <div class="wf-ph" style="width:120px;height:40px;background:#3a3a3a;border-color:#555;color:#999">神奈川県ロゴ</div>
+    <div style="display:flex;flex-direction:column;gap:8px;font:500 12px sans-serif;color:#cfccc5"><span>プライバシーポリシー</span><span>KID2027 に関するお問い合わせ</span><span>サイトポリシー</span></div>
+    <div style="font:400 11px/1.7 sans-serif;color:#b5b2aa"><div>主催：神奈川県 産業振興課</div><div>運営：株式会社eiicon</div></div>
+  </div>
+  <div style="margin-top:22px;border-top:1px solid #454545;padding-top:14px;font:400 11px 'JetBrains Mono',monospace;color:#8a877f;text-align:center">© Kanagawa Innovators Day 2027</div>
+</div></footer>
+</x-dc>
+</body>
+</html>

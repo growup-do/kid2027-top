@@ -152,6 +152,9 @@ a:hover {
   align-items: center;
   gap: 12px;
 }
+.header__brand:hover {
+  opacity: 0.85;
+}
 .header__divider {
   width: 1px;
   height: 26px;
@@ -286,6 +289,125 @@ a:hover {
   border-radius: 6px;
 }
 
+/* ------- ページ見出し（下層ページ共通） ------- */
+.page-head {
+  background: var(--beige);
+  border-bottom: 1px solid var(--line);
+}
+.page-head__inner {
+  padding-top: 34px;
+  padding-bottom: 30px;
+}
+.page-head__eyebrow {
+  font: 700 12px var(--font-mono);
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  margin-bottom: 8px;
+}
+.page-head__title {
+  font: 900 30px var(--font-jp);
+  margin: 0 0 10px;
+}
+.page-head__lead {
+  font: 400 13px/1.8 sans-serif;
+  color: #5a574f;
+  margin: 0;
+  max-width: 820px;
+}
+
+/* ------- セッション：ステージ情報グリッド ------- */
+.stagegrid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 12px;
+}
+
+/* ------- エリア：出展社ロゴグリッド ------- */
+.exgrid {
+  display: grid;
+  gap: 12px;
+}
+
+/* ------- セッション：コントロール（DAY切替＋凡例） ------- */
+.ss-controls {
+  padding-top: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.ss-daytabs {
+  display: inline-flex;
+  background: #efece6;
+  border-radius: 30px;
+  padding: 4px;
+}
+.ss-daytab {
+  border: none;
+  cursor: pointer;
+  border-radius: 26px;
+  padding: 9px 18px;
+  font: 700 12px sans-serif;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  color: #5a574f;
+}
+.ss-daytab.is-active {
+  background: #3a3a3a;
+  color: #fff;
+}
+.ss-legend {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  font: 600 11px sans-serif;
+  color: #6a675f;
+  flex-wrap: wrap;
+}
+.ss-legend > span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+.ss-legend__now {
+  width: 22px;
+  height: 3px;
+  background: #e0352b;
+  border-radius: 2px;
+}
+.ss-legend__box {
+  width: 12px;
+  height: 12px;
+  border-radius: 3px;
+}
+.ss-legend__box--now {
+  background: #fff;
+  border: 1.5px solid #e0352b;
+}
+.ss-legend__box--plan {
+  background: #fff;
+  border: 1px dashed var(--ph-dash-2);
+}
+.ss-legend__box--ended {
+  background: #f0efec;
+  border: 1px dashed #d0cdc6;
+}
+.ss-ended-badge {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  background: #8a877f;
+  color: #fff;
+  font: 700 8.5px 'JetBrains Mono', monospace;
+  padding: 1px 5px;
+  border-radius: 3px;
+  letter-spacing: 0.04em;
+  z-index: 1;
+}
+
 /* ------- レスポンシブ ------- */
 @media (max-width: 900px) {
   .wrap {
@@ -316,6 +438,12 @@ a:hover {
   .hamb {
     display: flex;
   }
+  .stagegrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .exgrid {
+    grid-template-columns: repeat(4, 1fr) !important;
+  }
 }
 
 @media (max-width: 560px) {
@@ -327,5 +455,14 @@ a:hover {
   }
   .g2 {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 520px) {
+  .stagegrid {
+    grid-template-columns: 1fr;
+  }
+  .exgrid {
+    grid-template-columns: repeat(3, 1fr) !important;
   }
 }

@@ -1,7 +1,7 @@
-# KID 2027 トップページ
+# KID 2027 ウェブサイト
 
-神奈川県主催「Kanagawa Innovators Day 2027（KID 2027）」公式サイト・トップページの実装。
-`design_handoff_kid2027_top/` のデザインリファレンス（HTML ワイヤーフレーム）を **Next.js（App Router / TypeScript）** で再現したもの。
+神奈川県主催「Kanagawa Innovators Day 2027（KID 2027）」公式サイトの実装（3ページ）。
+`design_handoff_kid2027/` のデザインリファレンス（HTML ワイヤーフレーム）を **Next.js（App Router / TypeScript）** で再現したもの。
 
 ## 技術スタック
 
@@ -9,7 +9,18 @@
 - React 19 / TypeScript
 - スタイル：素の CSS（`app/globals.css`）。フォントは Google Fonts（Zen Kaku Gothic New / JetBrains Mono）
 
-> **注**：現状はワイヤーフレーム段階の暫定パレット・プレースホルダーで構成。本番では色・タイポグラフィ・コンポーネントを正式なデザインシステムに、破線プレースホルダーを本番アセットに置換する想定（`design_handoff_kid2027_top/README.md` 参照）。
+> **注**：現状はワイヤーフレーム段階の暫定パレット・プレースホルダーで構成。本番では色・タイポグラフィ・コンポーネントを正式なデザインシステムに、破線プレースホルダーを本番アセットに置換する想定（`design_handoff_kid2027/README.md` 参照）。
+
+## ページ / ルーティング
+
+| ページ | パス | 内容 |
+|---|---|---|
+| トップ | `/` | 縦スクロール1枚（KV〜フッター） |
+| セッション | `/session` | STAGE INFORMATION ＋ テレビ番組表スタイルのタイムテーブル |
+| エリアマップ | `/area` | FLOOR MAP ＋ 協賛ランク別 出展社一覧 |
+
+ヘッダー／フッターは全ページ共通。ヘッダーは現在ページのナビをアクセントブルーで表示。
+※「KID Startup Pitch」ページは未制作のため、ナビからは意図的に除外（README 指示）。
 
 ## セットアップ
 
@@ -19,33 +30,41 @@ npm run dev       # 開発サーバー（http://localhost:3000）
 npm run build     # 本番ビルド ＝ 静的サイトを out/ に書き出し
 ```
 
-`npm run build` 後、`out/` を任意の静的ホスティング（Cloudflare Pages / GitHub Pages 等）へデプロイ可能。
+`npm run build` 後、`out/` を任意の静的ホスティング（GitHub Pages / Cloudflare Pages 等）へデプロイ可能。
+GitHub Pages などサブパス配信時は `NEXT_PUBLIC_BASE_PATH=/<repo名>` を渡してビルドする（CI で自動設定済み）。
 
 ## ディレクトリ構成
 
 ```
 app/
-  layout.tsx        ルートレイアウト（フォント読み込み・メタデータ）
-  page.tsx          トップページ本体（全セクション）
-  globals.css       ワイヤーフレーム用スタイル・デザイントークン
+  layout.tsx          ルートレイアウト（フォント読み込み・メタデータ）
+  page.tsx            トップページ
+  session/page.tsx    セッション/タイムテーブルページ
+  area/page.tsx       エリアマップ/出展社ページ
+  globals.css         ワイヤーフレーム用スタイル・デザイントークン
 components/
-  Header.tsx        ヘッダー（sticky）＋ハンバーガーメニュー開閉（クライアント）
-  PhotoSlider.tsx   「当日の様子」フォトスライダー（クライアント）
+  Header.tsx          共通ヘッダー（sticky・ハンバーガー開閉・現在ページ強調）
+  Footer.tsx          共通フッター
+  PhotoSlider.tsx     トップ「当日の様子」フォトスライダー
+  SessionTimetable.tsx セッションの番組表グリッド（DAY切替・NOWバー）
 lib/
-  data.ts           登壇者・参加者の声・写真データ
+  data.ts             登壇者・参加者の声・写真データ（トップ）
+  sessions.ts         セッションデータ・レイアウト定数
 public/
-  assets/kv.jpg     キービジュアル
-design_handoff_kid2027_top/   元デザインリファレンス（HTML）
+  assets/kv.jpg       キービジュアル
+design_handoff_kid2027/  元デザインリファレンス（HTML）
 ```
 
 ## 実装した挙動
 
+- **ルーティング**：3ページを Next.js App Router で構成。ページ間は `next/link` で遷移（basePath 自動対応）。
 - **ページ内アンカー**：ナビ・CTA から各セクションへスムーズスクロール（`scroll-behavior: smooth`）。
-- **フォトスライダー**：左右ボタンで 6 枚を 3 枚ずつ横スクロール（有効位置 0–3、端でクランプ）。ドットが現在位置を反映。
-- **ハンバーガーメニュー**：`max-width: 900px` でナビをドロワーに切替。開閉トグルを実装（デザインリファレンスでは未実装だった箇所）。
-- **レスポンシブ**：900px / 560px のブレークポイントでカラム数・グリッド列数を変更。
+- **フォトスライダー**（トップ）：左右ボタンで 6 枚を 3 枚ずつ横スクロール（有効位置 0–3、端でクランプ）。
+- **タイムテーブル**（セッション）：CSS Grid のテレビ番組表スタイル。DAY1/DAY2 切替で再計算。仮の現在時刻を基準に **NOW バー**（赤）を配置し、開催中セッションを赤枠・終了セッションをグレー＋「終了」バッジで表示。DAY1（過去日）は NOW バーなし。
+- **ハンバーガーメニュー**：`max-width: 900px` でナビをドロワーに切替（開閉トグルを実装）。
+- **レスポンシブ**：900px / 560px / 520px のブレークポイントでカラム数・グリッド列数を変更。
 
-## セクション構成
+## デプロイ
 
-ヘッダー → KV → CONCEPT → KID 2026 REPORT → MAIN CONTENTS → SIDE EVENTS →
-GUESTS → PARTNERS → OUTLINE → 神奈川県のベンチャー支援 → イラスト表現エリア → フッター
+`main` への push で GitHub Actions（`.github/workflows/deploy.yml`）がビルド → 静的エクスポート → GitHub Pages へ自動デプロイ。
+公開URL：**https://growup-do.github.io/kid2027-top/**

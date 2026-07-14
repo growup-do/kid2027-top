@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<template id="__bundler_thumbnail" data-bg-color="#f4f2ec">
+  <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <rect width="100" height="100" fill="#f4f2ec"/>
+    <rect x="26" y="30" width="48" height="16" rx="3" fill="#2a63d6"/>
+    <rect x="26" y="52" width="48" height="6" rx="3" fill="#cdcac2"/>
+    <rect x="26" y="62" width="34" height="6" rx="3" fill="#cdcac2"/>
+    <rect x="26" y="72" width="42" height="6" rx="3" fill="#8a877f"/>
+  </svg>
+</template>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  body{margin:0;background:#fff;font-family:"Zen Kaku Gothic New",system-ui,sans-serif;color:#2a2a2a}
+  a{color:#2a63d6;text-decoration:none}
+  a:hover{color:#1a49a8}
+  .wrap{max-width:1180px;margin:0 auto;padding-left:40px;padding-right:40px}
+  .wf-ph{background:
+    linear-gradient(135deg,transparent calc(50% - .6px),#cdcac2 50%,transparent calc(50% + .6px)),
+    linear-gradient(45deg,transparent calc(50% - .6px),#cdcac2 50%,transparent calc(50% + .6px)),
+    #eeece6;
+    border:1px dashed #bdbab2;display:flex;align-items:center;justify-content:center;
+    font:600 11px "JetBrains Mono",monospace;color:#8a877f;letter-spacing:.05em}
+  .wf-bar{height:9px;border-radius:5px;background:#d9d6cf}
+  .wf-btn{display:inline-flex;align-items:center;gap:6px;border:1.5px solid #4a4a4a;border-radius:26px;padding:9px 18px;font:600 12px sans-serif;color:#3a3a3a}
+  .wf-btnf{display:inline-flex;align-items:center;gap:6px;background:#3a3a3a;color:#fff;border-radius:26px;padding:10px 20px;font:600 12px sans-serif}
+  .sect{padding-top:40px;padding-bottom:40px;border-bottom:1px solid #ececec}
+  .h2{font:900 26px 'Zen Kaku Gothic New',sans-serif;margin:0 0 20px}
+  @media(max-width:900px){
+    .wrap{padding-left:20px;padding-right:20px}
+    .cols{flex-direction:column !important}
+    .cols>*{width:auto !important}
+    .g6{grid-template-columns:repeat(3,1fr) !important}
+    .g3{grid-template-columns:repeat(2,1fr) !important}
+    .metrics{flex-wrap:wrap}
+    .metrics>*{min-width:calc(50% - 8px)}
+    .navlinks{display:none !important}
+    .hamb{display:flex !important}
+  }
+  @media(max-width:560px){
+    .g6{grid-template-columns:repeat(2,1fr) !important}
+    .g3{grid-template-columns:1fr !important}
+  }
+</style>
+</helmet>
+
+<!-- HEADER -->
+<header style="position:sticky;top:0;z-index:50;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border-bottom:1px solid #ececec">
+  <div class="wrap" style="height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px">
+    <div style="display:flex;align-items:center;gap:12px">
+      <div class="wf-ph" style="width:110px;height:36px">神奈川県ロゴ</div>
+      <div style="width:1px;height:26px;background:#ddd"></div>
+      <div class="wf-ph" style="width:74px;height:30px;border-style:solid;border-color:#4a4a4a;color:#4a4a4a;background:#fff">KID ロゴ</div>
+    </div>
+    <div class="navlinks" style="display:flex;align-items:center;gap:20px">
+      <a href="#report" style="font:600 13px sans-serif;color:#2a63d6">2026 Report</a>
+      <a href="KID2027 セッション（確認用）.dc.html" style="font:600 13px sans-serif;color:#3a3a3a">Session / Timetable</a>
+      <a href="KID2027 エリアマップ（確認用）.dc.html" style="font:600 13px sans-serif;color:#3a3a3a">Exhibitors &amp; Event</a>
+      <a href="#outline" class="wf-btnf">参加登録</a>
+    </div>
+    <div class="hamb" style="display:none;flex-direction:column;gap:4px;cursor:pointer">
+      <span style="width:24px;height:2px;background:#3a3a3a"></span><span style="width:24px;height:2px;background:#3a3a3a"></span><span style="width:24px;height:2px;background:#3a3a3a"></span>
+    </div>
+  </div>
+</header>
+
+<!-- KV -->
+<section style="background:#f4f2ec">
+  <div class="wrap" style="padding-top:24px;padding-bottom:32px">
+    <img src="uploads/260708_kv.jpg" alt="Kanagawa Innovators Day 2027 キービジュアル" style="width:100%;display:block;border-radius:6px;border:1px solid #d5d2ca">
+    <div style="text-align:center;margin-top:18px"><a href="#outline" class="wf-btnf" style="padding:13px 48px;font-size:14px">参加登録</a></div>
+  </div>
+</section>
+
+<!-- CONCEPT -->
+<section id="concept" class="sect"><div class="wrap">
+  <h2 style="font:900 clamp(22px,3.4vw,30px)/1.4 'Zen Kaku Gothic New',sans-serif;margin:0 0 24px;letter-spacing:.01em">可能性と情熱が <span style="border-bottom:3px solid #2a63d6">交差</span> する、<br>新たな未来を紡ぎ出す1日</h2>
+  <div class="cols" style="display:flex;gap:36px;align-items:flex-start">
+    <p style="flex:1;font:400 13.5px/2.05 'Zen Kaku Gothic New',sans-serif;color:#3f3c34;margin:0">
+      企業の生産拠点やR＆D拠点、研究機関や大学などが集積する神奈川県。一方で超高齢社会・人口減少社会における様々な社会課題が存在するこの地は、まさに新規事業の実証と共創に最適な「未来市場の縮図」です。<br><br>
+      社会課題解決から新たな産業を創り出し、産業活性化が課題解決を加速させる ― その可能性が最も広がるこの地で、スタートアップ・ベンチャー、大企業・地場企業、自治体、投資家・金融機関、支援機関が出会い、未来を動かす挑戦が始まります。
+    </p>
+    <div class="wf-ph" style="width:360px;height:220px;flex:none">コンセプトビジュアル</div>
+  </div>
+</div></section>
+
+<!-- 2026 REPORT -->
+<section id="report" class="sect" style="background:#f4f2ec"><div class="wrap">
+  <h2 class="h2">KID 2026 REPORT</h2>
+  <div class="metrics" style="display:flex;gap:16px;margin-bottom:22px">
+    <div style="flex:1;background:#fff;border:1px dashed #c9c6bf;border-radius:6px;padding:18px 20px">
+      <div style="font:600 12px sans-serif;color:#7a776f;margin-bottom:8px">来場者数</div>
+      <div style="font:900 34px 'JetBrains Mono',monospace;color:#2a2a2a">0,000<span style="font-size:16px;font-weight:700">名</span></div>
+    </div>
+    <div style="flex:1;background:#fff;border:1px dashed #c9c6bf;border-radius:6px;padding:18px 20px">
+      <div style="font:600 12px sans-serif;color:#7a776f;margin-bottom:8px">出展満足度</div>
+      <div style="font:900 34px 'JetBrains Mono',monospace;color:#2a2a2a">00<span style="font-size:16px;font-weight:700">%</span></div>
+    </div>
+    <div style="flex:2;background:#fff;border:1px dashed #c9c6bf;border-radius:6px;padding:16px 20px">
+      <div style="font:600 12px sans-serif;color:#7a776f;margin-bottom:10px">来場者属性</div>
+      <div style="display:flex;align-items:center;gap:18px">
+        <div class="wf-ph" style="width:96px;height:96px;border-radius:50%;flex:none">円グラフ</div>
+        <div style="flex:1;display:flex;flex-direction:column;gap:9px">
+          <div style="display:flex;align-items:center;gap:8px"><span style="font:600 11px sans-serif;color:#6a675f;width:78px">大企業</span><div class="wf-bar" style="flex:1;width:70%"></div></div>
+          <div style="display:flex;align-items:center;gap:8px"><span style="font:600 11px sans-serif;color:#6a675f;width:78px">ベンチャー</span><div class="wf-bar" style="flex:1"></div></div>
+          <div style="display:flex;align-items:center;gap:8px"><span style="font:600 11px sans-serif;color:#6a675f;width:78px">自治体/支援</span><div class="wf-bar" style="flex:1;width:55%"></div></div>
+          <div style="display:flex;align-items:center;gap:8px"><span style="font:600 11px sans-serif;color:#6a675f;width:78px">金融/投資家</span><div class="wf-bar" style="flex:1;width:40%"></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- photo slider -->
+  <div style="margin-bottom:22px">
+    <div style="font:600 12px sans-serif;color:#7a776f;margin-bottom:10px">当日の様子</div>
+    <div style="display:flex;align-items:center;gap:12px">
+      <button onClick="{{ prevPhoto }}" style="width:38px;height:38px;border-radius:50%;border:1.5px solid #b5b2aa;background:#fff;display:flex;align-items:center;justify-content:center;color:#8a877f;font-size:18px;flex:none;cursor:pointer">‹</button>
+      <div style="flex:1;overflow:hidden;border-radius:6px">
+        <div style="display:flex;gap:12px;transition:transform .45s cubic-bezier(.4,0,.2,1);transform:{{ photoTransform }}">
+          <sc-for list="{{ photos }}" as="p" hint-placeholder-count="6">
+            <div class="wf-ph" style="flex:0 0 calc((100% - 24px)/3);height:200px">{{ p.label }}</div>
+          </sc-for>
+        </div>
+      </div>
+      <button onClick="{{ nextPhoto }}" style="width:38px;height:38px;border-radius:50%;border:1.5px solid #b5b2aa;background:#fff;display:flex;align-items:center;justify-content:center;color:#8a877f;font-size:18px;flex:none;cursor:pointer">›</button>
+    </div>
+    <div style="display:flex;gap:6px;justify-content:center;margin-top:10px">
+      <sc-for list="{{ dots }}" as="d" hint-placeholder-count="4">
+        <span style="width:8px;height:8px;border-radius:50%;background:{{ d.color }}"></span>
+      </sc-for>
+    </div>
+  </div>
+  <!-- voices x6 -->
+  <div style="font:600 12px sans-serif;color:#7a776f;margin-bottom:10px">参加者の声（6件）</div>
+  <div class="g3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px">
+    <sc-for list="{{ voices }}" as="v" hint-placeholder-count="6">
+      <div style="background:#fff;border:1px dashed #c9c6bf;border-radius:6px;padding:15px;display:flex;flex-direction:column">
+        <div style="font:700 40px Georgia,serif;color:#d9d6cf;line-height:.6;height:16px">“</div>
+        <p style="font:400 12.5px/1.8 'Zen Kaku Gothic New',sans-serif;color:#4a473f;margin:0 0 14px;flex:1">{{ v.text }}</p>
+        <div style="display:flex;align-items:center;gap:8px"><div class="wf-ph" style="width:30px;height:30px;border-radius:50%;flex:none">•</div><div><div style="font:700 11px sans-serif;color:#2a2a2a">{{ v.name }}</div><div style="font:500 10px sans-serif;color:#8a877f">{{ v.role }}</div></div></div>
+      </div>
+    </sc-for>
+  </div>
+</div></section>
+
+<!-- MAIN CONTENTS -->
+<section id="contents" class="sect"><div class="wrap">
+  <h2 class="h2">MAIN CONTENTS</h2>
+  <div class="cols" style="background:#fff;border:1px dashed #c9c6bf;border-radius:6px;padding:20px 22px;margin-bottom:14px;display:flex;gap:22px">
+    <div style="flex:1">
+      <div style="font:900 20px 'Zen Kaku Gothic New',sans-serif;margin-bottom:8px">KID Startup Pitch</div>
+      <p style="font:400 12.5px/1.85 sans-serif;color:#4a473f;margin:0 0 12px">挑戦する想いに、発信の場を。神奈川県が掲げる13の社会課題の解決をテーマに、革新的なアイデアが火花を散らすスタートアップピッチ。KID最大の熱狂コンテンツ。</p>
+      <span class="wf-btn">詳しくはこちら →</span>
+    </div>
+    <div class="wf-ph" style="width:300px;height:150px;flex:none">PITCH ビジュアル</div>
+  </div>
+  <div class="g3" style="display:grid;grid-template-columns:repeat(2,1fr);gap:14px">
+    <div style="background:#fff;border:1px dashed #c9c6bf;border-radius:6px;padding:16px"><div class="wf-ph" style="width:100%;height:96px;margin-bottom:12px">Demo Day</div><div style="font:900 16px sans-serif;margin-bottom:6px">Demo Day</div><p style="font:400 11.5px/1.7 sans-serif;color:#5a574f;margin:0 0 10px">神奈川県内のベンチャー支援事業の成果が集結。実証と進化の軌跡を辿る特別コンテンツ。</p><span style="font:600 11px sans-serif;color:#2a63d6">詳しくはこちら →</span></div>
+    <div style="background:#fff;border:1px dashed #c9c6bf;border-radius:6px;padding:16px"><div class="wf-ph" style="width:100%;height:96px;margin-bottom:12px">Exhibition</div><div style="font:900 16px sans-serif;margin-bottom:6px">Exhibition</div><p style="font:400 11.5px/1.7 sans-serif;color:#5a574f;margin:0 0 10px">大企業、ベンチャー、金融機関など多様なプレイヤーが混ざり合い、出会いが生まれる場。</p><span style="font:600 11px sans-serif;color:#2a63d6">詳しくはこちら →</span></div>
+  </div>
+  <div style="margin-top:14px;background:#eef2fb;border:1px dashed #b9caf0;border-radius:6px;overflow:hidden">
+    <div class="wf-ph" style="width:100%;height:70px;border:none;border-bottom:1px dashed #b9caf0;color:#8aa0cf">協賛ブース出展・サイドイベント・協賛グッズ 受付中 ｜ バナー</div>
+    <div class="cols" style="display:flex;align-items:center;justify-content:space-between;gap:20px;padding:16px 22px">
+      <div style="flex:1"><div style="font:900 16px sans-serif;margin-bottom:4px">協賛ブース出展・サイドイベント・協賛グッズ 受付中</div><div style="font:400 11.5px sans-serif;color:#5a574f">KID2027 の協賛・出展・グッズを受付中です。</div></div>
+      <span class="wf-btnf" style="flex:none">お申込みはこちら</span>
+    </div>
+  </div>
+</div></section>
+
+<!-- SIDE EVENTS -->
+<section id="side" class="sect" style="background:#f4f2ec"><div class="wrap">
+  <h2 class="h2">SIDE EVENTS</h2>
+  <div class="g3" style="display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:18px">
+    <div style="background:#fff;border:1px dashed #c9c6bf;border-radius:6px;overflow:hidden"><div class="wf-ph" style="height:120px;border:none;border-bottom:1px dashed #c9c6bf">バナー</div><div style="padding:14px"><div style="font:700 13px/1.5 sans-serif;color:#2a2a2a">アメックスのビジネス・マッチング・ステーション</div></div></div>
+    <div style="background:#fff;border:1px dashed #c9c6bf;border-radius:6px;overflow:hidden"><div class="wf-ph" style="height:120px;border:none;border-bottom:1px dashed #c9c6bf">バナー</div><div style="padding:14px"><div style="font:700 13px/1.5 sans-serif;color:#2a2a2a">神奈川発！共創コミュニティのぶっちゃけ話</div></div></div>
+    <div style="background:#fff;border:1px dashed #c9c6bf;border-radius:6px;overflow:hidden"><div class="wf-ph" style="height:120px;border:none;border-bottom:1px dashed #c9c6bf">バナー</div><div style="padding:14px"><div style="font:700 13px/1.5 sans-serif;color:#2a2a2a">鉄道会社のオープンイノベーションぶっちゃけ話 by TRIP</div></div></div>
+  </div>
+  <div style="text-align:center"><span class="wf-btn">もっと見る →</span></div>
+</div></section>
+
+<!-- GUESTS -->
+<section id="guests" class="sect"><div class="wrap">
+  <h2 class="h2">GUESTS</h2>
+  <div class="g6" style="display:grid;grid-template-columns:repeat(6,1fr);gap:14px 12px">
+    <sc-for list="{{ guests }}" as="g" hint-placeholder-count="12">
+      <div style="text-align:center"><div class="wf-ph" style="width:100%;aspect-ratio:1;border-radius:8px;margin-bottom:8px">写真</div><div style="font:500 9.5px/1.35 sans-serif;color:#8a877f;margin-bottom:2px">{{ g.role }}</div><div style="font:700 12px sans-serif">{{ g.name }}</div></div>
+    </sc-for>
+  </div>
+  <div style="text-align:center;margin-top:20px"><span class="wf-btn">セッションを見る →</span></div>
+</div></section>
+
+<!-- PARTNERS -->
+<section id="partners" class="sect" style="background:#f4f2ec"><div class="wrap">
+  <h2 class="h2">PARTNERS</h2>
+  <div style="display:flex;flex-direction:column;gap:16px">
+    <div><div style="font:700 12px 'JetBrains Mono',monospace;color:#2a63d6;margin-bottom:8px">■ Innovation Partner</div><div class="wf-ph" style="width:260px;height:70px;max-width:100%">ロゴ</div></div>
+    <div><div style="font:700 12px 'JetBrains Mono',monospace;color:#7a776f;margin-bottom:8px">■ Gold</div><div style="display:flex;gap:12px;flex-wrap:wrap"><div class="wf-ph" style="width:150px;height:56px">ロゴ</div><div class="wf-ph" style="width:150px;height:56px">ロゴ</div></div></div>
+    <div><div style="font:700 12px 'JetBrains Mono',monospace;color:#7a776f;margin-bottom:8px">■ Silver</div><div class="wf-ph" style="width:150px;height:52px">ロゴ</div></div>
+    <div><div style="font:700 12px 'JetBrains Mono',monospace;color:#7a776f;margin-bottom:8px">■ Bronze</div><div style="display:flex;gap:12px;flex-wrap:wrap"><div class="wf-ph" style="width:130px;height:48px">ロゴ</div><div class="wf-ph" style="width:130px;height:48px">ロゴ</div></div></div>
+    <div><div style="font:700 12px 'JetBrains Mono',monospace;color:#7a776f;margin-bottom:8px">■ Start Up &amp; SMB Gold / Bronze</div><div style="display:grid;grid-template-columns:repeat(8,1fr);gap:10px"><div class="wf-ph" style="height:44px">ロゴ</div><div class="wf-ph" style="height:44px">ロゴ</div><div class="wf-ph" style="height:44px">ロゴ</div><div class="wf-ph" style="height:44px">ロゴ</div><div class="wf-ph" style="height:44px">ロゴ</div><div class="wf-ph" style="height:44px">ロゴ</div><div class="wf-ph" style="height:44px">ロゴ</div><div class="wf-ph" style="height:44px">ロゴ</div></div></div>
+    <div><div style="font:700 12px 'JetBrains Mono',monospace;color:#7a776f;margin-bottom:8px">■ Supporter（自治体・支援機関・メディア 他）</div><div style="display:grid;grid-template-columns:repeat(10,1fr);gap:8px"><div class="wf-ph" style="height:38px;font-size:9px">ロゴ</div><div class="wf-ph" style="height:38px;font-size:9px">ロゴ</div><div class="wf-ph" style="height:38px;font-size:9px">ロゴ</div><div class="wf-ph" style="height:38px;font-size:9px">ロゴ</div><div class="wf-ph" style="height:38px;font-size:9px">ロゴ</div><div class="wf-ph" style="height:38px;font-size:9px">ロゴ</div><div class="wf-ph" style="height:38px;font-size:9px">ロゴ</div><div class="wf-ph" style="height:38px;font-size:9px">ロゴ</div><div class="wf-ph" style="height:38px;font-size:9px">ロゴ</div><div class="wf-ph" style="height:38px;font-size:9px">ロゴ</div><div class="wf-ph" style="height:38px;font-size:9px">ロゴ</div><div class="wf-ph" style="height:38px;font-size:9px">ロゴ</div><div class="wf-ph" style="height:38px;font-size:9px">ロゴ</div><div class="wf-ph" style="height:38px;font-size:9px">ロゴ</div><div class="wf-ph" style="height:38px;font-size:9px">ロゴ</div><div class="wf-ph" style="height:38px;font-size:9px">ロゴ</div><div class="wf-ph" style="height:38px;font-size:9px">ロゴ</div><div class="wf-ph" style="height:38px;font-size:9px">ロゴ</div><div class="wf-ph" style="height:38px;font-size:9px">ロゴ</div><div class="wf-ph" style="height:38px;font-size:9px">＋</div></div></div>
+  </div>
+  <div style="text-align:center;margin-top:20px"><span class="wf-btn">もっと見る →</span></div>
+</div></section>
+
+<!-- OUTLINE -->
+<section id="outline" class="sect"><div class="wrap">
+  <h2 class="h2">OUTLINE</h2>
+  <div class="cols" style="display:flex;gap:24px;align-items:flex-start">
+    <div style="flex:1;display:flex;flex-direction:column;gap:14px">
+      <div style="display:flex;gap:16px;border-bottom:1px dashed #d9d6cf;padding-bottom:14px"><div style="width:88px;font:700 13px sans-serif;color:#2a63d6;flex:none">開催日時</div><div style="font:400 12.5px/1.7 sans-serif;color:#3f3c34"><b>STARTUP PITCH NIGHT</b><br>2027.1.21（木）16:00-18:30<br><b style="display:inline-block;margin-top:8px">MAIN SUMMIT</b><br>2027.1.22（金）10:00-18:30</div></div>
+      <div style="display:flex;gap:16px"><div style="width:88px;font:700 13px sans-serif;color:#2a63d6;flex:none">会 場</div><div style="font:400 12.5px/1.7 sans-serif;color:#3f3c34">横浜エリア（会場調整中）</div></div>
+    </div>
+    <div style="flex:1"><div class="wf-ph" style="width:100%;height:200px">GOOGLE MAP / 会場写真</div></div>
+  </div>
+</div></section>
+
+<!-- SUPPORT -->
+<section id="support" class="sect" style="background:#f4f2ec"><div class="wrap">
+  <h2 style="font:900 22px 'Zen Kaku Gothic New',sans-serif;margin:0 0 14px">神奈川県のベンチャー支援</h2>
+  <p style="font:400 12.5px/1.95 sans-serif;color:#3f3c34;margin:0 0 20px;max-width:900px">ベンチャー支援のかながわモデル「HATSU–SHIN KANAGAWA」により成長段階に応じた支援に取り組んでいます。「HATSU鎌倉」など県内3か所の起業家創出拠点、横浜のベンチャー成長促進拠点「SHINみなとみらい」で、個別伴走支援や大企業との事業連携プロジェクト創出に取り組んでいます。</p>
+  <div style="font:700 13px sans-serif;margin-bottom:12px">神奈川県のベンチャー支援実績</div>
+  <div class="cols" style="display:flex;gap:14px">
+    <div style="flex:1;background:#fff;border:1px dashed #c9c6bf;border-radius:6px;padding:16px;display:flex;align-items:center;gap:14px"><div class="wf-ph" style="width:48px;height:48px;border-radius:50%;flex:none">icon</div><div><div style="font:500 11px/1.4 sans-serif;color:#7a776f">ベンチャー企業に対する事業化支援件数</div><div style="font:900 26px 'JetBrains Mono',monospace">293<span style="font-size:14px">件</span></div></div></div>
+    <div style="flex:1;background:#fff;border:1px dashed #c9c6bf;border-radius:6px;padding:16px;display:flex;align-items:center;gap:14px"><div class="wf-ph" style="width:48px;height:48px;border-radius:50%;flex:none">icon</div><div><div style="font:500 11px/1.4 sans-serif;color:#7a776f">OI支援事業の協議会参画企業</div><div style="font:900 26px 'JetBrains Mono',monospace">1,186<span style="font-size:14px">件</span></div></div></div>
+    <div style="flex:1;background:#fff;border:1px dashed #c9c6bf;border-radius:6px;padding:16px;display:flex;align-items:center;gap:14px"><div class="wf-ph" style="width:48px;height:48px;border-radius:50%;flex:none">icon</div><div><div style="font:500 11px/1.4 sans-serif;color:#7a776f">OI支援事業から誕生した事業化件数</div><div style="font:900 26px 'JetBrains Mono',monospace">41<span style="font-size:14px">件</span></div></div></div>
+  </div>
+</div></section>
+
+<!-- ILLUSTRATION -->
+<section id="illust" class="sect"><div class="wrap">
+  <h2 style="font:900 20px/1.5 'Zen Kaku Gothic New',sans-serif;margin:0 0 14px;color:#5a574f">神奈川県の地域特性・プレイヤーを活かした<br>イノベーション拠点であることをイラストで表現</h2>
+  <div class="wf-ph" style="width:100%;height:300px;font-size:13px">イラスト表現エリア（別途制作）</div>
+</div></section>
+
+<!-- FOOTER -->
+<footer style="padding:30px 0;background:#2f2f2f;color:#e5e3dd"><div class="wrap">
+  <div class="cols" style="display:flex;justify-content:space-between;align-items:flex-start;gap:30px;flex-wrap:wrap">
+    <div style="display:flex;gap:14px;align-items:center"><div class="wf-ph" style="width:120px;height:40px;background:#3a3a3a;border-color:#555;color:#999">神奈川県ロゴ</div></div>
+    <div style="display:flex;flex-direction:column;gap:8px;font:500 12px sans-serif;color:#cfccc5">
+      <span>プライバシーポリシー</span>
+      <span>KID2027 協賛ブース出展・サイドイベント・協賛グッズに関するお問い合わせ</span>
+      <span>サイトポリシー</span>
+    </div>
+    <div style="font:400 11px/1.7 sans-serif;color:#b5b2aa"><div>主催：神奈川県 産業振興課</div><div>運営：株式会社eiicon</div></div>
+  </div>
+  <div style="margin-top:22px;border-top:1px solid #454545;padding-top:14px;font:400 11px 'JetBrains Mono',monospace;color:#8a877f;text-align:center">© Kanagawa Innovators Day 2027</div>
+</div></footer>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  state = { photo: 0 };
+  get maxPhoto() { return 3; } // 6 photos, 3 per view -> indices 0..3
+  renderVals() {
+    const photos = [
+      { label: "PHOTO 01" }, { label: "PHOTO 02" }, { label: "PHOTO 03" },
+      { label: "PHOTO 04" }, { label: "PHOTO 05" }, { label: "PHOTO 06" }
+    ];
+    const dots = [0,1,2,3].map(i => ({ color: i === this.state.photo ? "#3a3a3a" : "#cdcac2" }));
+    const guests = [
+      { role: "代表理事・慶大名誉教授", name: "冨田 勝" },
+      { role: "東芝 社長CEO", name: "島田 太郎" },
+      { role: "資生堂 ディレクター", name: "中西 裕子" },
+      { role: "鈴廣かまぼこ 社長", name: "鈴木 智博" },
+      { role: "きらぼし銀行 所長", name: "石橋 宗弥" },
+      { role: "アルガルバイオ GL", name: "小田 康太郎" },
+      { role: "コーエーテクモHD 会長", name: "襟川 陽一" },
+      { role: "eiicon マネージャー", name: "松尾 真由子" },
+      { role: "Zip Infrastructure CEO", name: "須知 高匡" },
+      { role: "日本政策金融公庫", name: "髙橋 俊" },
+      { role: "横浜銀行 グループ長", name: "角坂 仁章" },
+      { role: "アメックス 副社長", name: "渡邉 慎司" }
+    ];
+    const voices = [
+      { text: "多様なプレイヤーと直接話せる密度の高い一日でした。新規事業の連携先がその場で見つかりました。", name: "大企業 事業開発", role: "新規事業部" },
+      { text: "ピッチを通じて自社の技術に対する反応をリアルに得られ、次の資金調達の手応えにつながりました。", name: "スタートアップ CEO", role: "創業者" },
+      { text: "自治体としての課題を持ち込むと、解決の当事者になりうる企業とすぐに繋がれたのが良かった。", name: "自治体 職員", role: "産業政策担当" },
+      { text: "投資先の発掘だけでなく、地域のエコシステム全体の熱量を感じられる場でした。", name: "ベンチャーキャピタル", role: "パートナー" },
+      { text: "出展ブースへの来場の質が高く、商談につながる会話が何件も生まれました。満足度は高いです。", name: "出展企業 マーケ", role: "事業責任者" },
+      { text: "支援機関同士の連携も深まり、支援メニューを跨いだ伴走がしやすくなりました。", name: "支援機関", role: "コーディネーター" }
+    ];
+    return {
+      photos, dots, guests, voices,
+      photoTransform: `translateX(calc(-${this.state.photo} * (100% - 24px)/3 - ${this.state.photo} * 12px))`,
+      prevPhoto: () => this.setState(s => ({ photo: Math.max(0, s.photo - 1) })),
+      nextPhoto: () => this.setState(s => ({ photo: Math.min(this.maxPhoto, s.photo + 1) }))
+    };
+  }
+}
+</script>
+</body>
+</html>
