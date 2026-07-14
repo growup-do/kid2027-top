@@ -2,6 +2,9 @@ import Header from "@/components/Header";
 import PhotoSlider from "@/components/PhotoSlider";
 import { guests, voices } from "@/lib/data";
 
+// GitHub Pages 等のサブパス配信に対応するためのベースパス（raw な img src には自動付与されないため手動で付与）
+const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || "";
+
 export default function Home() {
   return (
     <>
@@ -11,7 +14,7 @@ export default function Home() {
       <section className="sect--beige">
         <div className="wrap" style={{ paddingTop: 24, paddingBottom: 32 }}>
           <img
-            src="/assets/kv.jpg"
+            src={`${BASE_PATH}/assets/kv.jpg`}
             alt="Kanagawa Innovators Day 2027 キービジュアル"
             style={{
               width: "100%",
