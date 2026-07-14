@@ -1,0 +1,325 @@
+/* =========================================================================
+   KID 2027 トップページ — ワイヤーフレーム用スタイル
+   ※本番では対象コードベースのデザインシステム（色・タイポ・コンポーネント）
+     に置換する前提の暫定パレット。
+   ========================================================================= */
+
+:root {
+  --accent: #2a63d6;
+  --accent-hover: #1a49a8;
+  --text: #2a2a2a;
+  --body: #3f3c34;
+  --body-2: #4a473f;
+  --sub: #7a776f;
+  --sub-2: #8a877f;
+  --beige: #f4f2ec;
+  --pale-blue: #eef2fb;
+  --pale-blue-border: #b9caf0;
+  --line: #ececec;
+  --ph-dash: #bdbab2;
+  --ph-dash-2: #c9c6bf;
+  --bar: #d9d6cf;
+  --footer-bg: #2f2f2f;
+  --font-jp: "Zen Kaku Gothic New", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: #fff;
+  font-family: var(--font-jp);
+  color: var(--text);
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+a:hover {
+  color: var(--accent-hover);
+}
+
+/* ------- レイアウト ------- */
+.wrap {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.sect {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--line);
+}
+.sect--beige {
+  background: var(--beige);
+}
+
+.h2 {
+  font: 900 26px var(--font-jp);
+  margin: 0 0 20px;
+}
+
+.cols {
+  display: flex;
+  gap: 36px;
+  align-items: flex-start;
+}
+
+/* ------- ワイヤーフレーム部品 ------- */
+.wf-ph {
+  background:
+    linear-gradient(135deg, transparent calc(50% - 0.6px), #cdcac2 50%, transparent calc(50% + 0.6px)),
+    linear-gradient(45deg, transparent calc(50% - 0.6px), #cdcac2 50%, transparent calc(50% + 0.6px)),
+    #eeece6;
+  border: 1px dashed var(--ph-dash);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font: 600 11px var(--font-mono);
+  color: var(--sub-2);
+  letter-spacing: 0.05em;
+}
+
+.wf-bar {
+  height: 9px;
+  border-radius: 5px;
+  background: var(--bar);
+}
+
+.wf-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  border: 1.5px solid #4a4a4a;
+  border-radius: 26px;
+  padding: 9px 18px;
+  font: 600 12px sans-serif;
+  color: #3a3a3a;
+  cursor: pointer;
+  background: transparent;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+.wf-btn:hover {
+  background: #4a4a4a;
+  color: #fff;
+}
+
+.wf-btnf {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: #3a3a3a;
+  color: #fff;
+  border-radius: 26px;
+  padding: 10px 20px;
+  font: 600 12px sans-serif;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.wf-btnf:hover {
+  background: #555;
+  color: #fff;
+}
+
+/* ------- ヘッダー ------- */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+.header__inner {
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+.header__brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.header__divider {
+  width: 1px;
+  height: 26px;
+  background: #ddd;
+}
+.navlinks {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+.navlinks a {
+  font: 600 13px sans-serif;
+  color: #3a3a3a;
+}
+.navlinks a.is-accent {
+  color: var(--accent);
+}
+.navlinks a:hover {
+  color: var(--accent-hover);
+}
+
+.hamb {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  padding: 6px;
+}
+.hamb span {
+  width: 24px;
+  height: 2px;
+  background: #3a3a3a;
+  transition: transform 0.25s ease, opacity 0.2s ease;
+}
+.hamb.is-open span:nth-child(1) {
+  transform: translateY(6px) rotate(45deg);
+}
+.hamb.is-open span:nth-child(2) {
+  opacity: 0;
+}
+.hamb.is-open span:nth-child(3) {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+/* モバイルドロワー */
+.drawer {
+  display: none;
+  border-bottom: 1px solid var(--line);
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(10px);
+}
+.drawer.is-open {
+  display: block;
+}
+.drawer__inner {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-top: 12px;
+  padding-bottom: 16px;
+}
+.drawer a {
+  font: 600 14px sans-serif;
+  color: #3a3a3a;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--line);
+}
+.drawer a.is-accent {
+  color: var(--accent);
+}
+.drawer a.drawer__cta {
+  border-bottom: 0;
+  margin-top: 8px;
+  align-self: flex-start;
+}
+
+/* ------- メトリクス ------- */
+.metrics {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 22px;
+}
+.metric {
+  background: #fff;
+  border: 1px dashed var(--ph-dash-2);
+  border-radius: 6px;
+  padding: 18px 20px;
+}
+.metric__label {
+  font: 600 12px sans-serif;
+  color: var(--sub);
+  margin-bottom: 8px;
+}
+.metric__value {
+  font: 900 34px var(--font-mono);
+  color: var(--text);
+}
+.metric__value small {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+/* ------- グリッド ------- */
+.g3 {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+.g2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+.g6 {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 14px 12px;
+}
+
+/* ------- カード共通 ------- */
+.card {
+  background: #fff;
+  border: 1px dashed var(--ph-dash-2);
+  border-radius: 6px;
+}
+
+/* ------- レスポンシブ ------- */
+@media (max-width: 900px) {
+  .wrap {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .cols {
+    flex-direction: column;
+  }
+  .cols > * {
+    width: auto !important;
+  }
+  .g6 {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .g3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .metrics {
+    flex-wrap: wrap;
+  }
+  .metrics > * {
+    min-width: calc(50% - 8px);
+  }
+  .navlinks {
+    display: none;
+  }
+  .hamb {
+    display: flex;
+  }
+}
+
+@media (max-width: 560px) {
+  .g6 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .g3 {
+    grid-template-columns: 1fr;
+  }
+  .g2 {
+    grid-template-columns: 1fr;
+  }
+}
