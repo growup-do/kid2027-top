@@ -9,55 +9,8 @@ export const metadata: Metadata = {
     "Kanagawa Innovators Day 2027 のセッション・タイムテーブル。2日間・5ステージで展開されるプログラム。",
 };
 
-// STAGE INFORMATION（フロアマップ配置図）。area は .floormap__grid の grid-template-areas に対応。
-const STAGES = [
-  {
-    area: "main",
-    name: "MAIN STAGE",
-    color: "#1d5fd6",
-    tint: "#eaf1fb",
-    place: "1F 大ホール / 800",
-    body: "キーノート・基調講演・ピッチファイナル・表彰など、KIDの中心プログラム。",
-  },
-  {
-    area: "demo",
-    name: "DEMO STAGE",
-    color: "#7b53b8",
-    tint: "#f4f0fa",
-    place: "1F 展示ホール内 / 120",
-    body: "Demo Day・実証発表・Exhibition連動の実演ステージ。",
-  },
-  {
-    area: "roomA",
-    name: "SESSION ROOM A",
-    color: "#188a5a",
-    tint: "#eef7f2",
-    place: "2F 会議室A / 200",
-    body: "ディープテック・金融・OI等のテーマ別トークセッション。",
-  },
-  {
-    area: "roomB",
-    name: "SESSION ROOM B",
-    color: "#c0473a",
-    tint: "#faf1ef",
-    place: "2F 会議室B / 200",
-    body: "地域産業・エンタメ・食・投資など多彩なゲストセッション。",
-  },
-  {
-    area: "work",
-    name: "WORKSHOP",
-    color: "#9a7a1f",
-    tint: "#f6f3ea",
-    place: "3F WSルーム / 60",
-    body: "事業共創・ピッチブラッシュアップ等の参加型プログラム。",
-  },
-] as const;
-
-// フロアマップ上の非ステージ区画（受付・展示エリア）
-const FLOOR_UTILS = [
-  { area: "net", label: "NETWORKING\nLOUNGE" },
-  { area: "exh", label: "EXHIBITION\nAREA" },
-] as const;
+// GitHub Pages 等のサブパス配信に対応するためのベースパス（raw な img src には自動付与されないため手動付与）
+const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
 export default function SessionPage() {
   return (
@@ -74,11 +27,22 @@ export default function SessionPage() {
             <span style={{ color: "#e0352b", fontWeight: 700 }}>赤いライン</span>
             で表示されます。※内容は仮です。
           </p>
+          <nav className="page-nav" aria-label="ページ内リンク">
+            <a href="#stage-info" className="page-nav__btn">
+              STAGE INFORMATION
+            </a>
+            <a href="#day1" className="page-nav__btn">
+              DAY1 <span>1.21</span>
+            </a>
+            <a href="#day2" className="page-nav__btn">
+              DAY2 <span>1.22</span>
+            </a>
+          </nav>
         </div>
       </section>
 
       {/* STAGE INFORMATION */}
-      <section className="wrap" style={{ paddingTop: 28 }}>
+      <section id="stage-info" className="wrap section-anchor" style={{ paddingTop: 28 }}>
         <div
           style={{
             display: "flex",
@@ -105,38 +69,12 @@ export default function SessionPage() {
           会場は5つのステージで構成されます。フロアマップ上の各ステージの配置・テーマは以下の通りです（配置・定員は仮）。
         </p>
 
-        {/* フロアマップ形式の配置図 */}
-        <div className="floormap">
-          <span className="floormap__tag">FLOOR MAP</span>
-          <div className="floormap__grid">
-            {STAGES.map((s) => (
-              <div
-                key={s.name}
-                className="floorbox"
-                style={{
-                  gridArea: s.area,
-                  background: s.tint,
-                  borderTop: `4px solid ${s.color}`,
-                }}
-              >
-                <div className="floorbox__name" style={{ color: s.color }}>
-                  {s.name}
-                </div>
-                <div className="floorbox__place">{s.place}</div>
-                <p className="floorbox__body">{s.body}</p>
-              </div>
-            ))}
-            {FLOOR_UTILS.map((u) => (
-              <div
-                key={u.area}
-                className="floorbox floorbox--util"
-                style={{ gridArea: u.area, whiteSpace: "pre-line" }}
-              >
-                {u.label}
-              </div>
-            ))}
-          </div>
-          <span className="floormap__entrance">▼ ENTRANCE / 受付</span>
+        {/* フロアマップ（画像） */}
+        <div className="floormap-img">
+          <img
+            src={`${BASE_PATH}/assets/session-floormap.png`}
+            alt="KID 2027 会場フロアマップ（ステージ配置図）"
+          />
         </div>
       </section>
 

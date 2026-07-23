@@ -18,7 +18,7 @@ export default function SessionTimetable() {
   return (
     <>
       {/* ===== DAY1（1.21）＝ MAIN STAGE Startup Pitch のみ ===== */}
-      <section className="wrap dayblock">
+      <section id="day1" className="wrap dayblock section-anchor">
         <div className="dayblock__label">
           <span className="dayblock__day">DAY1</span>
           <span className="dayblock__date">2027.1.21（木）</span>
@@ -27,7 +27,7 @@ export default function SessionTimetable() {
       </section>
 
       {/* ===== DAY2（1.22）＝ 5ステージの番組表タイムテーブル ===== */}
-      <section className="wrap dayblock">
+      <section id="day2" className="wrap dayblock section-anchor">
         <div
           style={{
             display: "flex",
