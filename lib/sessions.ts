@@ -27,25 +27,52 @@ export const HEAD = 40;
 export const STAGE_TINT = ["#eaf1fb", "#eef7f2", "#faf1ef", "#f4f0fa", "#f6f3ea"];
 export const STAGE_TINT_TEXT = ["#1d5fd6", "#188a5a", "#c0473a", "#7b53b8", "#9a7a1f"];
 
-export const dayData: Record<Day, DayData> = {
-  // DAY1 STARTUP PITCH NIGHT 16:00-18:30（過去日想定：NOW バーなし）
-  1: {
-    base: "16:00",
-    end: "18:30",
-    now: null,
-    stages: ["MAIN STAGE", "PITCH STAGE A", "PITCH STAGE B", "NETWORKING", "WORKSHOP"],
-    sessions: [
-      { st: 0, s: "16:00", e: "16:20", title: "オープニング / 神奈川県知事挨拶", sp: "神奈川県" },
-      { st: 0, s: "16:30", e: "17:30", title: "KID Startup Pitch 一次審査ラウンド", sp: "登壇スタートアップ 8社" },
-      { st: 0, s: "17:45", e: "18:30", title: "ファイナルピッチ & 表彰", sp: "審査員・ゲスト" },
-      { st: 1, s: "16:20", e: "17:10", title: "社会課題テーマ別ピッチ①（環境・エネルギー）", sp: "スタートアップ 4社" },
-      { st: 1, s: "17:20", e: "18:10", title: "社会課題テーマ別ピッチ②（ヘルスケア）", sp: "スタートアップ 4社" },
-      { st: 2, s: "16:20", e: "17:10", title: "社会課題テーマ別ピッチ③（モビリティ）", sp: "スタートアップ 4社" },
-      { st: 2, s: "17:20", e: "18:10", title: "社会課題テーマ別ピッチ④（防災・インフラ）", sp: "スタートアップ 4社" },
-      { st: 3, s: "16:30", e: "18:30", title: "ネットワーキングラウンジ（自由交流）", sp: "参加者・出展企業" },
-      { st: 4, s: "16:40", e: "17:40", title: "事業共創ワークショップ（大企業×VB）", sp: "eiicon ファシリテーター" },
-    ],
-  },
+// DAY1（1.21）は MAIN STAGE で KID Startup Pitch のみ。
+// 番組表ではなく登壇者・審査員カードで見せ、Pitch 詳細ページへリンクする。
+export type PitchPerson = {
+  org?: string; // 所属
+  role?: string; // 肩書
+  name: string; // 氏名
+  en: string; // ローマ字
+};
+
+export type Day1Pitch = {
+  time: string;
+  stage: string;
+  title: string;
+  lead: string;
+  href: string; // KID Startup Pitch 詳細ページ（今後作成）
+  speakers: PitchPerson[];
+  judges: PitchPerson[];
+};
+
+export const day1Pitch: Day1Pitch = {
+  time: "16:45–18:45",
+  stage: "Final Stage",
+  title: "KID Startup Pitch -挑戦者たちの戦陣-",
+  lead:
+    "神奈川県が掲げる社会課題の解決をテーマに、選ばれた挑戦者たちが火花を散らす KID 最大の熱狂コンテンツ。DAY1 は MAIN STAGE でのファイナルピッチのみを実施します。",
+  href: "/pitch", // ※ KID Startup Pitch ページは今後作成
+  speakers: [
+    { org: "株式会社虫秘茶", role: "取締役", name: "芝 竜太郎", en: "Ryutaro Shiba" },
+    { org: "株式会社NIJIN", role: "NIJINアカデミー企業連携担当", name: "菊地 世恋", en: "Seren Kikuchi" },
+    { org: "株式会社クロスメディスン", role: "代表取締役", name: "中井 洸我", en: "Koga Nakai" },
+    { org: "エグゼヴィータ株式会社", role: "代表取締役", name: "多田 洋史", en: "Hiroshi Tada" },
+    { org: "株式会社カマン", role: "代表取締役", name: "善積 真吾", en: "Shingo Yoshizumi" },
+  ],
+  judges: [
+    { role: "神奈川県知事", name: "黒岩 祐治", en: "Yuji Kuroiwa" },
+    {
+      role: "一般社団法人鶴岡サイエンスパーク代表理事・慶應義塾大学名誉教授",
+      name: "冨田 勝",
+      en: "Masaru Tomita",
+    },
+    { org: "株式会社NTTドコモ・ベンチャーズ", role: "代表取締役CEO＆CCO", name: "笹原 優子", en: "Yuko Sasahara" },
+    { org: "面白法人カヤック", role: "代表取締役CEO", name: "柳澤 大輔", en: "Daisuke Yanasawa" },
+  ],
+};
+
+export const dayData: Record<2, DayData> = {
   // DAY2 MAIN SUMMIT 10:00-19:00（仮の現在時刻 15:20）
   2: {
     base: "10:00",

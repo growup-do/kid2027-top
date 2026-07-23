@@ -59,16 +59,6 @@ export default function AreaPage() {
         </div>
       </section>
 
-      {/* FLOOR MAP */}
-      <section className="sect">
-        <div className="wrap">
-          <h2 className="h2">FLOOR MAP</h2>
-          <div className="wf-ph" style={{ width: "100%", height: 420, borderRadius: 10 }}>
-            会場フロアマップ（別途制作）？
-          </div>
-        </div>
-      </section>
-
       {/* EXHIBITORS */}
       <section className="sect">
         <div className="wrap">

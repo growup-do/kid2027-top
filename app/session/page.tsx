@@ -9,39 +9,55 @@ export const metadata: Metadata = {
     "Kanagawa Innovators Day 2027 のセッション・タイムテーブル。2日間・5ステージで展開されるプログラム。",
 };
 
-// STAGE INFORMATION の 5 ステージ（テーマ・会場/定員は仮）
+// STAGE INFORMATION（フロアマップ配置図）。area は .floormap__grid の grid-template-areas に対応。
 const STAGES = [
   {
+    area: "main",
     name: "MAIN STAGE",
     color: "#1d5fd6",
-    place: "1F 大ホール / 定員 800",
-    body: "キーノート・基調講演・ピッチファイナル・表彰など、KIDの中心となるプログラムを実施。",
+    tint: "#eaf1fb",
+    place: "1F 大ホール / 800",
+    body: "キーノート・基調講演・ピッチファイナル・表彰など、KIDの中心プログラム。",
   },
   {
-    name: "SESSION ROOM A",
-    color: "#188a5a",
-    place: "2F 会議室A / 定員 200",
-    body: "ディープテック・金融・オープンイノベーション等のテーマ別トークセッション。",
-  },
-  {
-    name: "SESSION ROOM B",
-    color: "#c0473a",
-    place: "2F 会議室B / 定員 200",
-    body: "地域産業・エンタメ・食・投資など、多彩なゲストによるセッション。",
-  },
-  {
+    area: "demo",
     name: "DEMO STAGE",
     color: "#7b53b8",
-    place: "1F 展示ホール内 / 定員 120",
-    body: "Demo Day・実証プロジェクト発表・Exhibition連動の実演ステージ。",
+    tint: "#f4f0fa",
+    place: "1F 展示ホール内 / 120",
+    body: "Demo Day・実証発表・Exhibition連動の実演ステージ。",
   },
   {
+    area: "roomA",
+    name: "SESSION ROOM A",
+    color: "#188a5a",
+    tint: "#eef7f2",
+    place: "2F 会議室A / 200",
+    body: "ディープテック・金融・OI等のテーマ別トークセッション。",
+  },
+  {
+    area: "roomB",
+    name: "SESSION ROOM B",
+    color: "#c0473a",
+    tint: "#faf1ef",
+    place: "2F 会議室B / 200",
+    body: "地域産業・エンタメ・食・投資など多彩なゲストセッション。",
+  },
+  {
+    area: "work",
     name: "WORKSHOP",
     color: "#9a7a1f",
-    place: "3F ワークショップルーム / 定員 60",
-    body: "事業共創・ピッチブラッシュアップなど参加型の少人数プログラム。",
+    tint: "#f6f3ea",
+    place: "3F WSルーム / 60",
+    body: "事業共創・ピッチブラッシュアップ等の参加型プログラム。",
   },
-];
+] as const;
+
+// フロアマップ上の非ステージ区画（受付・展示エリア）
+const FLOOR_UTILS = [
+  { area: "net", label: "NETWORKING\nLOUNGE" },
+  { area: "exh", label: "EXHIBITION\nAREA" },
+] as const;
 
 export default function SessionPage() {
   return (
@@ -86,43 +102,41 @@ export default function SessionPage() {
             maxWidth: 820,
           }}
         >
-          会場は5つのステージで構成されます。各ステージのテーマ・想定コンテンツは以下の通りです（内容は仮）。
+          会場は5つのステージで構成されます。フロアマップ上の各ステージの配置・テーマは以下の通りです（配置・定員は仮）。
         </p>
-        <div className="stagegrid">
-          {STAGES.map((s) => (
-            <div
-              key={s.name}
-              style={{
-                background: "#fff",
-                border: "1px solid #e3e0d9",
-                borderTop: `4px solid ${s.color}`,
-                borderRadius: 8,
-                padding: "14px 14px 16px",
-              }}
-            >
+
+        {/* フロアマップ形式の配置図 */}
+        <div className="floormap">
+          <span className="floormap__tag">FLOOR MAP</span>
+          <div className="floormap__grid">
+            {STAGES.map((s) => (
               <div
+                key={s.name}
+                className="floorbox"
                 style={{
-                  font: "800 13px var(--font-jp)",
-                  color: s.color,
-                  marginBottom: 4,
+                  gridArea: s.area,
+                  background: s.tint,
+                  borderTop: `4px solid ${s.color}`,
                 }}
               >
-                {s.name}
+                <div className="floorbox__name" style={{ color: s.color }}>
+                  {s.name}
+                </div>
+                <div className="floorbox__place">{s.place}</div>
+                <p className="floorbox__body">{s.body}</p>
               </div>
+            ))}
+            {FLOOR_UTILS.map((u) => (
               <div
-                style={{
-                  font: "600 10px 'JetBrains Mono',monospace",
-                  color: "var(--sub-2)",
-                  marginBottom: 8,
-                }}
+                key={u.area}
+                className="floorbox floorbox--util"
+                style={{ gridArea: u.area, whiteSpace: "pre-line" }}
               >
-                {s.place}
+                {u.label}
               </div>
-              <p style={{ font: "400 11px/1.65 sans-serif", color: "#5a574f", margin: 0 }}>
-                {s.body}
-              </p>
-            </div>
-          ))}
+            ))}
+          </div>
+          <span className="floormap__entrance">▼ ENTRANCE / 受付</span>
         </div>
       </section>
 

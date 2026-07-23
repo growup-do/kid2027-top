@@ -4,11 +4,11 @@ import Link from "next/link";
 import { useState } from "react";
 
 // 現在表示中のページ（対応するナビをアクセント色で表示）
-export type ActiveNav = "report" | "session" | "area";
+export type ActiveNav = "top" | "session" | "area";
 
 // KID Startup Pitch は今後追加予定のため意図的に除外（README 指示）
 const NAV_LINKS: { href: string; label: string; active: ActiveNav }[] = [
-  { href: "/#report", label: "2026 Report", active: "report" },
+  { href: "/", label: "Top", active: "top" },
   { href: "/session", label: "Session / Timetable", active: "session" },
   { href: "/area", label: "Exhibitors & Event", active: "area" },
 ];

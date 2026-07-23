@@ -9,7 +9,7 @@ const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || "";
 export default function Home() {
   return (
     <>
-      <Header active="report" />
+      <Header active="top" />
 
       {/* ===== KV ===== */}
       <section className="sect--beige">
@@ -258,8 +258,8 @@ export default function Home() {
           <div className="g2">
             {[
               {
-                title: "Demo Day",
-                body: "神奈川県内のベンチャー支援事業の成果が集結。実証と進化の軌跡を辿る特別コンテンツ。",
+                title: "Keynote session",
+                body: "各界を牽引するゲストが登壇。産業・社会の未来を語り、次の挑戦へのヒントを届ける基調セッション。",
               },
               {
                 title: "Exhibition",
