@@ -479,6 +479,13 @@ a:hover {
   .yoxo__title {
     font-size: 25px;
   }
+
+  /* DAY2 番組表：SP は表内で縦スクロールさせ、ステージ見出し行を上部固定 */
+  .ss-scroll {
+    max-height: 72vh;
+    overflow: auto;
+    overscroll-behavior: contain;
+  }
 }
 
 /* ------- ページ内リンク（FV アンカーボタン） ------- */
