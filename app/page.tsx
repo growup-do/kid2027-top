@@ -1,6 +1,7 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import PhotoSlider from "@/components/PhotoSlider";
+import YoxoBanner from "@/components/YoxoBanner";
 import { guests, voices } from "@/lib/data";
 
 // GitHub Pages 等のサブパス配信に対応するためのベースパス（raw な img src には自動付与されないため手動で付与）
@@ -683,15 +684,7 @@ export default function Home() {
       <Footer />
 
       {/* トップのみ：YOXOフェス フローティングバナー（PC 左下 / SP は CTA バーの上） */}
-      <a
-        href="#" // ※ YOXOフェス 特設サイト URL は別途差し替え
-        className="yoxo"
-        aria-label="YOXOフェス 特設サイトへ"
-      >
-        <span className="yoxo__tag">SPECIAL</span>
-        <span className="yoxo__title">YOXOフェス</span>
-        <span className="yoxo__sub">同時開催イベント ▶</span>
-      </a>
+      <YoxoBanner />
     </>
   );
 }

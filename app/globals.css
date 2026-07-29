@@ -329,9 +329,9 @@ a:hover {
   bottom: 20px;
   z-index: 60;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   gap: 10px;
-  align-items: stretch;
+  align-items: center;
 }
 .floatbtns__btn {
   display: inline-flex;
@@ -370,18 +370,17 @@ a:hover {
   color: #fff;
 }
 
-/* ------- トップ：YOXOフェス フローティングバナー（左下 / SP は CTA バー上） ------- */
+/* ------- トップ：YOXOフェス フローティングバナー（370×160・左下 / SP は CTA バー上） ------- */
 .yoxo {
   position: fixed;
   left: 20px;
   bottom: 20px;
   z-index: 60;
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-  width: 170px;
-  padding: 12px 16px;
-  border-radius: 12px;
+  width: 370px;
+  height: 160px;
+  max-width: calc(100vw - 40px);
+  border-radius: 14px;
+  overflow: hidden;
   background: linear-gradient(135deg, #1b2b6b, #2a63d6);
   color: #fff;
   box-shadow: 0 8px 20px -6px rgba(20, 40, 110, 0.6);
@@ -390,23 +389,57 @@ a:hover {
 .yoxo:hover {
   transform: translateY(-2px);
   box-shadow: 0 12px 26px -6px rgba(20, 40, 110, 0.7);
+}
+.yoxo__link {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 6px;
+  padding: 22px 24px;
+  color: #fff;
+}
+.yoxo__link:hover {
   color: #fff;
 }
 .yoxo__tag {
   align-self: flex-start;
-  font: 700 9px var(--font-mono);
+  font: 700 10px var(--font-mono);
   letter-spacing: 0.12em;
   background: rgba(255, 255, 255, 0.2);
-  padding: 2px 7px;
-  border-radius: 4px;
+  padding: 3px 9px;
+  border-radius: 5px;
 }
 .yoxo__title {
-  font: 900 18px var(--font-jp);
-  margin-top: 4px;
+  font: 900 28px var(--font-jp);
+  line-height: 1.1;
 }
 .yoxo__sub {
-  font: 600 10.5px sans-serif;
-  opacity: 0.9;
+  font: 600 12px sans-serif;
+  opacity: 0.92;
+}
+.yoxo__close {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  z-index: 2;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.22);
+  color: #fff;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  transition: background 0.15s ease;
+}
+.yoxo__close:hover {
+  background: rgba(255, 255, 255, 0.4);
 }
 
 /* SP：CTA を下部固定バー化、YOXO をその上に重ねる */
@@ -437,20 +470,14 @@ a:hover {
     right: 12px;
     bottom: 76px; /* CTA バーの上 */
     width: auto;
-    flex-direction: row;
-    align-items: center;
-    gap: 10px;
-    padding: 10px 14px;
+    max-width: none;
+    height: 150px;
   }
-  .yoxo__tag {
-    order: 0;
+  .yoxo__link {
+    padding: 18px 20px;
   }
   .yoxo__title {
-    margin-top: 0;
-    font-size: 16px;
-  }
-  .yoxo__sub {
-    margin-left: auto;
+    font-size: 25px;
   }
 }
 
