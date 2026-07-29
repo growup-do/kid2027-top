@@ -479,13 +479,6 @@ a:hover {
   .yoxo__title {
     font-size: 25px;
   }
-
-  /* DAY2 番組表：SP は表内で縦スクロールさせ、ステージ見出し行を上部固定 */
-  .ss-scroll {
-    max-height: 72vh;
-    overflow: auto;
-    overscroll-behavior: contain;
-  }
 }
 
 /* ------- ページ内リンク（FV アンカーボタン） ------- */
@@ -523,6 +516,13 @@ a:hover {
 /* 固定ヘッダー分のアンカーオフセット */
 .section-anchor {
   scroll-margin-top: 80px;
+}
+
+/* DAY2 番組表：PC/SP とも表内で縦スクロールさせ、ステージ見出し行を上部固定 */
+.ss-scroll {
+  max-height: 78vh;
+  overflow: auto;
+  overscroll-behavior: contain;
 }
 
 /* ------- セッション：STAGE INFORMATION フロアマップ（画像） ------- */
