@@ -322,6 +322,138 @@ a:hover {
   gap: 12px;
 }
 
+/* ------- 共通：フローティング CTA（右下 / SP 下部固定） ------- */
+.floatbtns {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: stretch;
+}
+.floatbtns__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 30px;
+  padding: 13px 22px;
+  font: 700 13px sans-serif;
+  white-space: nowrap;
+  box-shadow: 0 6px 18px -6px rgba(0, 0, 0, 0.35);
+  transition: background 0.15s ease, color 0.15s ease, transform 0.1s ease;
+}
+.floatbtns__btn:active {
+  transform: translateY(1px);
+}
+.floatbtns__btn span {
+  font-size: 14px;
+}
+.floatbtns__pamph {
+  background: #fff;
+  color: #3a3a3a;
+  border: 1.5px solid #3a3a3a;
+}
+.floatbtns__pamph:hover {
+  background: #3a3a3a;
+  color: #fff;
+}
+.floatbtns__cta {
+  background: var(--accent);
+  color: #fff;
+  border: 1.5px solid var(--accent);
+}
+.floatbtns__cta:hover {
+  background: var(--accent-hover);
+  color: #fff;
+}
+
+/* ------- トップ：YOXOフェス フローティングバナー（左下 / SP は CTA バー上） ------- */
+.yoxo {
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  width: 170px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, #1b2b6b, #2a63d6);
+  color: #fff;
+  box-shadow: 0 8px 20px -6px rgba(20, 40, 110, 0.6);
+  transition: transform 0.12s ease, box-shadow 0.15s ease;
+}
+.yoxo:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 26px -6px rgba(20, 40, 110, 0.7);
+  color: #fff;
+}
+.yoxo__tag {
+  align-self: flex-start;
+  font: 700 9px var(--font-mono);
+  letter-spacing: 0.12em;
+  background: rgba(255, 255, 255, 0.2);
+  padding: 2px 7px;
+  border-radius: 4px;
+}
+.yoxo__title {
+  font: 900 18px var(--font-jp);
+  margin-top: 4px;
+}
+.yoxo__sub {
+  font: 600 10.5px sans-serif;
+  opacity: 0.9;
+}
+
+/* SP：CTA を下部固定バー化、YOXO をその上に重ねる */
+@media (max-width: 640px) {
+  body {
+    padding-bottom: 68px; /* 固定バー分の余白 */
+  }
+  .floatbtns {
+    right: 0;
+    left: 0;
+    bottom: 0;
+    flex-direction: row;
+    gap: 8px;
+    padding: 9px 12px;
+    background: rgba(255, 255, 255, 0.97);
+    backdrop-filter: blur(8px);
+    border-top: 1px solid var(--line);
+    box-shadow: 0 -3px 12px -4px rgba(0, 0, 0, 0.18);
+  }
+  .floatbtns__btn {
+    flex: 1;
+    padding: 12px 10px;
+    font-size: 12px;
+    box-shadow: none;
+  }
+  .yoxo {
+    left: 12px;
+    right: 12px;
+    bottom: 76px; /* CTA バーの上 */
+    width: auto;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+  }
+  .yoxo__tag {
+    order: 0;
+  }
+  .yoxo__title {
+    margin-top: 0;
+    font-size: 16px;
+  }
+  .yoxo__sub {
+    margin-left: auto;
+  }
+}
+
 /* ------- ページ内リンク（FV アンカーボタン） ------- */
 .page-nav {
   display: flex;

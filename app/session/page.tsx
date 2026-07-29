@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import SessionTimetable from "@/components/SessionTimetable";
+import { SessionDay1, SessionDay2 } from "@/components/SessionTimetable";
 
 export const metadata: Metadata = {
   title: "セッション・タイムテーブル｜KID 2027",
@@ -28,11 +28,11 @@ export default function SessionPage() {
             で表示されます。※内容は仮です。
           </p>
           <nav className="page-nav" aria-label="ページ内リンク">
-            <a href="#stage-info" className="page-nav__btn">
-              STAGE INFORMATION
-            </a>
             <a href="#day1" className="page-nav__btn">
               DAY1 <span>1.21</span>
+            </a>
+            <a href="#stage-info" className="page-nav__btn">
+              STAGE INFORMATION
             </a>
             <a href="#day2" className="page-nav__btn">
               DAY2 <span>1.22</span>
@@ -41,7 +41,10 @@ export default function SessionPage() {
         </div>
       </section>
 
-      {/* STAGE INFORMATION */}
+      {/* DAY1（Startup Pitch） */}
+      <SessionDay1 />
+
+      {/* STAGE INFORMATION（フロアマップ） */}
       <section id="stage-info" className="wrap section-anchor" style={{ paddingTop: 28 }}>
         <div
           style={{
@@ -78,8 +81,8 @@ export default function SessionPage() {
         </div>
       </section>
 
-      {/* コントロール＋タイムテーブル（動的） */}
-      <SessionTimetable />
+      {/* DAY2（番組表タイムテーブル） */}
+      <SessionDay2 />
 
       <Footer />
     </>

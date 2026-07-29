@@ -681,6 +681,17 @@ export default function Home() {
 
       {/* ===== FOOTER ===== */}
       <Footer />
+
+      {/* トップのみ：YOXOフェス フローティングバナー（PC 左下 / SP は CTA バーの上） */}
+      <a
+        href="#" // ※ YOXOフェス 特設サイト URL は別途差し替え
+        className="yoxo"
+        aria-label="YOXOフェス 特設サイトへ"
+      >
+        <span className="yoxo__tag">SPECIAL</span>
+        <span className="yoxo__title">YOXOフェス</span>
+        <span className="yoxo__sub">同時開催イベント ▶</span>
+      </a>
     </>
   );
 }

@@ -14,41 +14,43 @@ import {
 // GitHub Pages 等のサブパス配信では next/link は basePath 自動対応だが、静的検証のため定数化
 const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
-export default function SessionTimetable() {
+/* ===== DAY1（1.21）＝ MAIN STAGE Startup Pitch のみ ===== */
+export function SessionDay1() {
   return (
-    <>
-      {/* ===== DAY1（1.21）＝ MAIN STAGE Startup Pitch のみ ===== */}
-      <section id="day1" className="wrap dayblock section-anchor">
-        <div className="dayblock__label">
-          <span className="dayblock__day">DAY1</span>
-          <span className="dayblock__date">2027.1.21（木）</span>
-        </div>
-        <PitchBlock />
-      </section>
+    <section id="day1" className="wrap dayblock section-anchor">
+      <div className="dayblock__label">
+        <span className="dayblock__day">DAY1</span>
+        <span className="dayblock__date">2027.1.21（木）</span>
+      </div>
+      <PitchBlock />
+    </section>
+  );
+}
 
-      {/* ===== DAY2（1.22）＝ 5ステージの番組表タイムテーブル ===== */}
-      <section id="day2" className="wrap dayblock section-anchor">
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            gap: 16,
-            flexWrap: "wrap",
-          }}
-        >
-          <div className="dayblock__label">
-            <span className="dayblock__day">DAY2</span>
-            <span className="dayblock__date">2027.1.22（金）</span>
-          </div>
-          <Legend />
+/* ===== DAY2（1.22）＝ 5ステージの番組表タイムテーブル ===== */
+export function SessionDay2() {
+  return (
+    <section id="day2" className="wrap dayblock section-anchor">
+      <div
+        style={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "space-between",
+          gap: 16,
+          flexWrap: "wrap",
+        }}
+      >
+        <div className="dayblock__label">
+          <span className="dayblock__day">DAY2</span>
+          <span className="dayblock__date">2027.1.22（金）</span>
         </div>
-        <Day2Grid />
-        <p style={{ font: "400 11px sans-serif", color: "#9a978f", margin: "12px 0 0" }}>
-          ※横にスクロールできます。各セッションをタップすると詳細（登壇者・概要）が開きます（詳細ページは別途）。
-        </p>
-      </section>
-    </>
+        <Legend />
+      </div>
+      <Day2Grid />
+      <p style={{ font: "400 11px sans-serif", color: "#9a978f", margin: "12px 0 0" }}>
+        ※横にスクロールできます。各セッションをタップすると詳細（登壇者・概要）が開きます（詳細ページは別途）。
+      </p>
+    </section>
   );
 }
 
