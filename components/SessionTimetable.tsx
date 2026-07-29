@@ -229,7 +229,6 @@ function Day2Grid() {
 
   return (
     <div
-      className="ss-scroll"
       style={{
         marginTop: 14,
         overflowX: "auto",
@@ -255,7 +254,6 @@ function Day2Grid() {
             gridRow: 1,
             position: "sticky",
             left: 0,
-            top: 0,
             zIndex: 6,
             background: "#f4f2ec",
             borderRight: "1px solid #e3e0d9",
