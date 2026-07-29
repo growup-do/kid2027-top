@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { useEffect, useRef } from "react";
 import {
   dayData,
   day1Pitch,
@@ -13,6 +16,9 @@ import {
 
 // GitHub Pages 等のサブパス配信では next/link は basePath 自動対応だが、静的検証のため定数化
 const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || "";
+
+// サイト共通ヘッダーの高さ（.header__inner height と一致）
+const SITE_HEADER_H = 64;
 
 /* ===== DAY1（1.21）＝ MAIN STAGE Startup Pitch のみ ===== */
 export function SessionDay1() {
@@ -227,17 +233,72 @@ function Day2Grid() {
   const nowTop = nowShow ? HEAD + ((now! - base) / 30) * SLOT : 0;
   const gridTemplateRows = `${HEAD}px repeat(${slots}, ${SLOT}px)`;
 
+  // 横スクロールに追従する固定ステージ見出し（画面上部固定）
+  const scrollerRef = useRef<HTMLDivElement>(null);
+  const gridRef = useRef<HTMLDivElement>(null);
+  const stickyRef = useRef<HTMLDivElement>(null);
+  const trackRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const scroller = scrollerRef.current;
+    const grid = gridRef.current;
+    const sticky = stickyRef.current;
+    const track = trackRef.current;
+    if (!scroller || !grid || !sticky || !track) return;
+
+    // クローンの位置・幅・列幅を実グリッドへ同期
+    const syncSize = () => {
+      const r = scroller.getBoundingClientRect();
+      sticky.style.left = `${r.left}px`;
+      sticky.style.width = `${scroller.clientWidth}px`;
+      const cells = grid.querySelectorAll<HTMLElement>("[data-tt-stage]");
+      const widths = Array.from(cells).map((c) => c.getBoundingClientRect().width);
+      if (widths.length) {
+        track.style.gridTemplateColumns = widths.map((w) => `${w}px`).join(" ");
+      }
+    };
+
+    // 見出し行が上部固定ラインに達したらクローンを表示、横位置を同期
+    const update = () => {
+      const g = grid.getBoundingClientRect();
+      const show = g.top < SITE_HEADER_H && g.bottom > SITE_HEADER_H + HEAD;
+      sticky.style.display = show ? "block" : "none";
+      if (show) track.style.transform = `translateX(${-scroller.scrollLeft}px)`;
+    };
+
+    const onResize = () => {
+      syncSize();
+      update();
+    };
+
+    syncSize();
+    update();
+    const ro = new ResizeObserver(syncSize);
+    ro.observe(grid);
+    window.addEventListener("scroll", update, { passive: true });
+    scroller.addEventListener("scroll", update, { passive: true });
+    window.addEventListener("resize", onResize);
+    return () => {
+      ro.disconnect();
+      window.removeEventListener("scroll", update);
+      scroller.removeEventListener("scroll", update);
+      window.removeEventListener("resize", onResize);
+    };
+  }, []);
+
   return (
-    <div
-      style={{
-        marginTop: 14,
-        overflowX: "auto",
-        border: "1px solid #e3e0d9",
-        borderRadius: 10,
-        background: "#faf9f6",
-      }}
-    >
+    <div style={{ position: "relative", marginTop: 14 }}>
       <div
+        ref={scrollerRef}
+        style={{
+          overflowX: "auto",
+          border: "1px solid #e3e0d9",
+          borderRadius: 10,
+          background: "#faf9f6",
+        }}
+      >
+      <div
+        ref={gridRef}
         style={{
           position: "relative",
           minWidth: 760,
@@ -262,7 +323,7 @@ function Day2Grid() {
         />
         {/* ステージ見出し */}
         {stages.map((st) => (
-          <div key={st.name} style={st.style}>
+          <div key={st.name} data-tt-stage style={st.style}>
             {st.name}
           </div>
         ))}
@@ -331,6 +392,70 @@ function Day2Grid() {
             </div>
           </div>
         )}
+      </div>
+      </div>
+
+      {/* 横スクロール追従・画面上部固定のステージ見出し（JS制御） */}
+      <div
+        ref={stickyRef}
+        aria-hidden
+        style={{
+          position: "fixed",
+          top: SITE_HEADER_H,
+          height: HEAD,
+          display: "none",
+          overflow: "hidden",
+          zIndex: 45,
+          pointerEvents: "none",
+          boxShadow: "0 4px 10px -6px rgba(0,0,0,.25)",
+        }}
+      >
+        {/* コーナー（時刻列の見出し。左固定でステージがこの下に潜り込む） */}
+        <div
+          style={{
+            position: "absolute",
+            left: 0,
+            top: 0,
+            width: 64,
+            height: "100%",
+            zIndex: 2,
+            background: "#f4f2ec",
+            borderRight: "1px solid #e3e0d9",
+            borderBottom: "1px solid #e3e0d9",
+          }}
+        />
+        {/* ステージ見出し（横スクロールに追従して translateX） */}
+        <div
+          ref={trackRef}
+          style={{
+            position: "absolute",
+            left: 64,
+            top: 0,
+            height: "100%",
+            display: "grid",
+            gridAutoFlow: "column",
+          }}
+        >
+          {d.stages.map((name, i) => (
+            <div
+              key={name}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                textAlign: "center",
+                padding: "0 8px",
+                background: STAGE_TINT[i],
+                color: STAGE_TINT_TEXT[i],
+                font: "800 12px 'Zen Kaku Gothic New',sans-serif",
+                borderBottom: "1px solid #e3e0d9",
+                borderRight: "1px solid #ece9e2",
+              }}
+            >
+              {name}
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
