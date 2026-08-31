@@ -32,18 +32,18 @@ const AWARD_COMPANIES = [
 // 募集テーマ（神奈川県の社会課題・13項目／仮）
 const THEMES = [
   "子ども・若者",
-  "教育・人材育成",
+  "教育",
   "未病・健康長寿",
-  "医療・ヘルスケア",
-  "高齢社会・介護",
-  "環境・エネルギー",
-  "防災・減災",
-  "農業・食",
-  "観光・地域活性",
-  "交通・モビリティ",
-  "産業・ものづくり",
-  "デジタル・DX",
-  "共生社会・ダイバーシティ",
+  "文化・スポーツ",
+  "観光・地域活性化",
+  "経済・労働",
+  "農林水産",
+  "脱炭素・環境",
+  "生活困窮",
+  "共生社会",
+  "くらしの安心",
+  "危機管理",
+  "都市基盤",
 ];
 
 // スケジュール（仮）
@@ -110,35 +110,6 @@ export default function PitchPage() {
               エントリーはこちら
             </a>
           </div>
-        </div>
-      </section>
-
-      {/* ===== 開催概要 ===== */}
-      <section id="outline" className="sect">
-        <div className="wrap">
-          <SectionHead en="OUTLINE" jp="開催概要" />
-          <div className="g2">
-            {[
-              { k: "本選", v: "2027.1.21（木） 00:00–00:00" },
-              { k: "予選", v: "2027.1.21（木） 00:00–00:00" },
-              { k: "会場", v: "BASEGATE 横浜関内（THE LIVE）" },
-              { k: "エントリー受付", v: "2027.1.21（木） 00:00 まで" },
-            ].map((r) => (
-              <div
-                key={r.k}
-                className="card"
-                style={{ padding: "16px 18px", display: "flex", gap: 14, alignItems: "baseline" }}
-              >
-                <div style={{ font: "700 13px sans-serif", color: "var(--accent)", width: 116, flex: "none" }}>
-                  {r.k}
-                </div>
-                <div style={{ font: "600 13px/1.6 sans-serif", color: "var(--body)" }}>{r.v}</div>
-              </div>
-            ))}
-          </div>
-          <p style={{ font: "400 11px sans-serif", color: "#9a978f", margin: "12px 0 0" }}>
-            ※日時・会場は仮です。
-          </p>
         </div>
       </section>
 
@@ -258,6 +229,30 @@ export default function PitchPage() {
               </div>
             ))}
           </div>
+
+          {/* 受賞特典・本選出場特典（2026 反映） */}
+          <div className="g2" style={{ marginTop: 16 }}>
+            <div className="card" style={{ padding: 16 }}>
+              <div style={{ font: "800 13px var(--font-jp)", color: "var(--accent)", marginBottom: 10 }}>
+                受賞特典
+              </div>
+              <ul style={{ margin: 0, paddingLeft: 18, font: "400 12px/1.9 sans-serif", color: "#5a574f" }}>
+                <li>ベンチャー成長促進拠点「SHINみなとみらい」利用権 等</li>
+                <li>神奈川県内の大企業による企業賞</li>
+              </ul>
+            </div>
+            <div className="card" style={{ padding: 16 }}>
+              <div style={{ font: "800 13px var(--font-jp)", color: "var(--accent)", marginBottom: 10 }}>
+                本選出場特典
+              </div>
+              <ul style={{ margin: 0, paddingLeft: 18, font: "400 12px/1.9 sans-serif", color: "#5a574f" }}>
+                <li>本選イベントでのブース出展</li>
+                <li>大企業・自治体・投資家等とのマッチング機会</li>
+                <li>VIPネットワーキング参加権</li>
+                <li>プレスリリース・サイト・SNS・オンラインメディア等による広報機会</li>
+              </ul>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -293,10 +288,11 @@ export default function PitchPage() {
           <div className="cols" style={{ gap: 24 }}>
             <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: 12 }}>
               {[
-                { k: "対象", v: "全国の起業家（起業前も可）" },
-                { k: "対象外", v: "大企業は対象外" },
+                { k: "応募対象", v: "神奈川県の社会課題解決に資するビジネスプランを持つ、全国の起業家（起業前も可）" },
+                { k: "対象外", v: "大企業（社内新規事業等）は対象外" },
                 { k: "参加費", v: "無料" },
                 { k: "締切", v: "2027.1.21（木） 00:00 まで" },
+                { k: "注意事項", v: "応募規約に違反した場合等、運営事務局が不適切と判断した場合は参加資格を取り消すことがあります。" },
               ].map((r) => (
                 <div key={r.k} style={{ display: "flex", gap: 16, borderBottom: "1px dashed var(--bar)", paddingBottom: 12 }}>
                   <div style={{ width: 88, font: "700 13px sans-serif", color: "var(--accent)", flex: "none" }}>
