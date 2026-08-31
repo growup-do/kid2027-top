@@ -285,34 +285,34 @@ export default function PitchPage() {
       <section id="entry" className="sect sect--beige">
         <div className="wrap">
           <SectionHead en="ENTRY" jp="応募要項" />
-          <div className="cols" style={{ gap: 24 }}>
-            <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: 12 }}>
-              {[
-                { k: "応募対象", v: "神奈川県の社会課題解決に資するビジネスプランを持つ、全国の起業家（起業前も可）" },
-                { k: "対象外", v: "大企業（社内新規事業等）は対象外" },
-                { k: "参加費", v: "無料" },
-                { k: "締切", v: "2027.1.21（木） 00:00 まで" },
-                { k: "注意事項", v: "応募規約に違反した場合等、運営事務局が不適切と判断した場合は参加資格を取り消すことがあります。" },
-              ].map((r) => (
-                <div key={r.k} style={{ display: "flex", gap: 16, borderBottom: "1px dashed var(--bar)", paddingBottom: 12 }}>
-                  <div style={{ width: 88, font: "700 13px sans-serif", color: "var(--accent)", flex: "none" }}>
-                    {r.k}
-                  </div>
-                  <div style={{ font: "400 12.5px/1.7 sans-serif", color: "var(--body)" }}>{r.v}</div>
+          <div style={{ display: "flex", flexDirection: "column", gap: 12, maxWidth: 860 }}>
+            {[
+              { k: "応募対象", v: "神奈川県の社会課題解決に資するビジネスプランを持つ、全国の起業家（起業前も可）" },
+              { k: "対象外", v: "大企業（社内新規事業等）は対象外" },
+              { k: "参加費", v: "無料" },
+              { k: "締切", v: "2027.1.21（木） 00:00 まで" },
+              { k: "注意事項", v: "応募規約に違反した場合等、運営事務局が不適切と判断した場合は参加資格を取り消すことがあります。" },
+            ].map((r) => (
+              <div key={r.k} style={{ display: "flex", gap: 16, borderBottom: "1px dashed var(--bar)", paddingBottom: 12 }}>
+                <div style={{ width: 88, font: "700 13px sans-serif", color: "var(--accent)", flex: "none" }}>
+                  {r.k}
                 </div>
-              ))}
-            </div>
-            <div style={{ flex: 1, display: "flex", flexDirection: "column", justifyContent: "center", gap: 14 }}>
-              <div
-                className="wf-ph"
-                style={{ width: "100%", height: 120, borderRadius: 8 }}
-              >
-                応募フォーム / 募集要項 PDF
+                <div style={{ font: "400 12.5px/1.7 sans-serif", color: "var(--body)" }}>{r.v}</div>
               </div>
-              <a href="#" className="wf-btnf" style={{ alignSelf: "flex-start", padding: "13px 44px", fontSize: 14 }}>
-                エントリーはこちら
-              </a>
-            </div>
+            ))}
+          </div>
+
+          {/* エントリーは外部フォーム（別サイト）へ遷移。URL は別途差し替え */}
+          <div style={{ textAlign: "center", marginTop: 26 }}>
+            <a
+              href="#"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="wf-btnf"
+              style={{ padding: "14px 52px", fontSize: 14 }}
+            >
+              エントリーフォームへ ↗
+            </a>
           </div>
         </div>
       </section>
