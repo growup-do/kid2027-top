@@ -34,6 +34,7 @@ export type PitchPerson = {
   role?: string; // 肩書
   name: string; // 氏名
   en: string; // ローマ字
+  pitchTitle?: string; // ピッチタイトル（30文字程度・ファイナリスト用）
 };
 
 export type Day1Pitch = {
@@ -54,11 +55,11 @@ export const day1Pitch: Day1Pitch = {
     "神奈川県が掲げる社会課題の解決をテーマに、選ばれた挑戦者たちが火花を散らす KID 最大の熱狂コンテンツ。DAY1 は MAIN STAGE でのファイナルピッチのみを実施します。",
   href: "/pitch", // ※ KID Startup Pitch ページは今後作成
   speakers: [
-    { org: "株式会社虫秘茶", role: "取締役", name: "芝 竜太郎", en: "Ryutaro Shiba" },
-    { org: "株式会社NIJIN", role: "NIJINアカデミー企業連携担当", name: "菊地 世恋", en: "Seren Kikuchi" },
-    { org: "株式会社クロスメディスン", role: "代表取締役", name: "中井 洸我", en: "Koga Nakai" },
-    { org: "エグゼヴィータ株式会社", role: "代表取締役", name: "多田 洋史", en: "Hiroshi Tada" },
-    { org: "株式会社カマン", role: "代表取締役", name: "善積 真吾", en: "Shingo Yoshizumi" },
+    { org: "株式会社虫秘茶", role: "取締役", name: "芝 竜太郎", en: "Ryutaro Shiba", pitchTitle: "昆虫由来の発酵茶で、廃棄食材を地域の新たな資源に変える" },
+    { org: "株式会社NIJIN", role: "NIJINアカデミー企業連携担当", name: "菊地 世恋", en: "Seren Kikuchi", pitchTitle: "オンライン教育で、不登校の子どもに学びの選択肢を届ける" },
+    { org: "株式会社クロスメディスン", role: "代表取締役", name: "中井 洸我", en: "Koga Nakai", pitchTitle: "医療データ連携で、地域の診療をつなぐ次世代プラットフォーム" },
+    { org: "エグゼヴィータ株式会社", role: "代表取締役", name: "多田 洋史", en: "Hiroshi Tada", pitchTitle: "AI×介護記録で、現場の負担を減らし高齢社会を支える" },
+    { org: "株式会社カマン", role: "代表取締役", name: "善積 真吾", en: "Shingo Yoshizumi", pitchTitle: "リユース容器で、まちから使い捨てをなくす循環型サービス" },
   ],
   judges: [
     { role: "神奈川県知事", name: "黒岩 祐治", en: "Yuji Kuroiwa" },

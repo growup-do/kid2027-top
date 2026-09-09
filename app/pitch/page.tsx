@@ -12,6 +12,9 @@ export const metadata: Metadata = {
 // サブパス配信対応（raw img src には basePath が自動付与されないため手動付与）
 const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
+// 神奈川グランドデザイン（ピッチテーマの背景となる県の総合計画）
+const GRAND_DESIGN_URL = "https://www.pref.kanagawa.jp/docs/r5k/nkg.html";
+
 // モデレーター（仮）
 const MODERATORS: PitchPerson[] = [
   { role: "MC / モデレーター", name: "近藤 さや香", en: "Sayaka Kondo" },
@@ -29,7 +32,7 @@ const AWARD_COMPANIES = [
   "横浜銀行",
 ];
 
-// 募集テーマ（神奈川県の社会課題・13項目／仮）
+// ピッチテーマ（神奈川県の社会課題・13項目／2026 と同一）
 const THEMES = [
   "子ども・若者",
   "教育",
@@ -46,15 +49,10 @@ const THEMES = [
   "都市基盤",
 ];
 
-// スケジュール（仮）
-const SCHEDULE = [
-  { d: "2027.1.21", t: "エントリー締切", b: "応募フォームより受付（00:00まで）" },
-  { d: "2027.1.21", t: "書類選考", b: "エントリー内容をもとに選考" },
-  { d: "2027.1.21", t: "予選", b: "00:00–00:00（登壇者による予選ピッチ）" },
-  { d: "2027.1.21", t: "本選", b: "00:00–00:00 BASEGATE 横浜関内（THE LIVE）" },
-];
+// 去年（2026）のフォトギャラリー（枚数は仮）
+const GALLERY = ["オープニング", "ピッチ登壇", "審査員講評", "会場の様子", "表彰式", "集合写真"];
 
-// セクション見出し（英語アイビー＋日本語サブ）
+// セクション見出し（英語アイブロウ＋日本語）
 function SectionHead({ en, jp }: { en: string; jp: string }) {
   return (
     <div style={{ marginBottom: 20 }}>
@@ -73,6 +71,7 @@ function SectionHead({ en, jp }: { en: string; jp: string }) {
   );
 }
 
+// 審査員・モデレーター用（写真＋所属/肩書/氏名）
 function Person({ p }: { p: PitchPerson }) {
   return (
     <div className="person">
@@ -87,6 +86,33 @@ function Person({ p }: { p: PitchPerson }) {
   );
 }
 
+// ファイナリスト用（企業ロゴ＋登壇者＋ピッチタイトル）
+function Finalist({ p }: { p: PitchPerson }) {
+  return (
+    <div className="card" style={{ padding: 18, display: "flex", flexDirection: "column", gap: 14 }}>
+      <div className="wf-ph" style={{ width: 150, height: 48, alignSelf: "flex-start" }}>
+        企業ロゴ
+      </div>
+      <Person p={p} />
+      {p.pitchTitle && (
+        <div
+          style={{
+            borderTop: "1px dashed var(--bar)",
+            paddingTop: 12,
+            font: "800 13.5px/1.6 var(--font-jp)",
+            color: "var(--text)",
+          }}
+        >
+          <span style={{ font: "700 10px var(--font-mono)", color: "var(--accent)", marginRight: 8 }}>
+            PITCH
+          </span>
+          {p.pitchTitle}
+        </div>
+      )}
+    </div>
+  );
+}
+
 export default function PitchPage() {
   return (
     <>
@@ -96,7 +122,7 @@ export default function PitchPage() {
       <section className="sect--beige">
         <div className="wrap" style={{ paddingTop: 24, paddingBottom: 28 }}>
           <img
-            src={`${BASE_PATH}/assets/pitch-kv.jpg`}
+            src={BASE_PATH + "/assets/pitch-kv.jpg"}
             alt="KID Startup Pitch 2027 キービジュアル"
             style={{
               width: "100%",
@@ -106,21 +132,36 @@ export default function PitchPage() {
             }}
           />
           <div style={{ textAlign: "center", marginTop: 18 }}>
-            <a href="#entry" className="wf-btnf" style={{ padding: "13px 44px", fontSize: 14 }}>
-              エントリーはこちら
+            <a href="#outline" className="wf-btnf" style={{ padding: "13px 44px", fontSize: 14 }}>
+              観覧予約はこちら
             </a>
           </div>
         </div>
       </section>
 
       {/* ===== CONCEPT ===== */}
-      <section className="sect sect--beige">
+      <section className="sect">
         <div className="wrap">
           <SectionHead en="CONCEPT" jp="挑戦する想いに、発信の場を。" />
           <p style={{ font: "400 13.5px/2.05 var(--font-jp)", color: "var(--body)", margin: 0, maxWidth: 900 }}>
             神奈川県が掲げる社会課題の解決をテーマに、革新的なアイデアと熱量を持つ起業家が集い、火花を散らすスタートアップピッチ。
             全国の起業家（起業前も可）を対象に、県内での実証・事業連携・成長支援へとつながる「発信の場」を提供します。
             KID 最大の熱狂コンテンツとして、挑戦者たちの想いを未来へつなぎます。
+          </p>
+        </div>
+      </section>
+
+      {/* ===== FINALIST（コンセプト直後に配置） ===== */}
+      <section id="finalist" className="sect sect--beige">
+        <div className="wrap">
+          <SectionHead en="FINALIST" jp="ファイナリスト" />
+          <div className="g2">
+            {day1Pitch.speakers.map((p) => (
+              <Finalist key={p.name} p={p} />
+            ))}
+          </div>
+          <p style={{ font: "400 11px sans-serif", color: "#9a978f", margin: "12px 0 0" }}>
+            ※企業ロゴ・ピッチタイトルは仮です。
           </p>
         </div>
       </section>
@@ -149,10 +190,20 @@ export default function PitchPage() {
         </div>
       </section>
 
-      {/* ===== THEME ===== */}
+      {/* ===== THEME（ピッチテーマ） ===== */}
       <section id="theme" className="sect sect--beige">
         <div className="wrap">
-          <SectionHead en="THEME" jp="募集テーマ（社会課題 13項目）" />
+          <SectionHead en="THEME" jp="ピッチテーマ（社会課題 13項目）" />
+          <p
+            style={{
+              font: "400 13.5px/2 var(--font-jp)",
+              color: "var(--body)",
+              margin: "0 0 20px",
+              maxWidth: 900,
+            }}
+          >
+            県が取り組む社会課題の解決をテーマに、これからの世界を神奈川から変えていく革新的なビジネスプランを競い合います。
+          </p>
           <div className="g3">
             {THEMES.map((t, i) => (
               <div
@@ -174,6 +225,40 @@ export default function PitchPage() {
               </div>
             ))}
           </div>
+
+          {/* 神奈川グランドデザインへの導線 */}
+          <div
+            className="card"
+            style={{
+              marginTop: 20,
+              padding: "16px 20px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+              gap: 16,
+              flexWrap: "wrap",
+              background: "var(--pale-blue)",
+              borderColor: "var(--pale-blue-border)",
+            }}
+          >
+            <div>
+              <div style={{ font: "800 14px var(--font-jp)", marginBottom: 4 }}>
+                テーマの背景：かながわグランドデザイン
+              </div>
+              <div style={{ font: "400 11.5px/1.6 sans-serif", color: "#5a574f" }}>
+                神奈川県が取り組む社会課題と将来像は、県の総合計画「かながわグランドデザイン」に基づいています。
+              </div>
+            </div>
+            <a
+              href={GRAND_DESIGN_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="wf-btn"
+              style={{ flex: "none" }}
+            >
+              かながわグランドデザインを見る ↗
+            </a>
+          </div>
         </div>
       </section>
 
@@ -189,20 +274,8 @@ export default function PitchPage() {
         </div>
       </section>
 
-      {/* ===== SPEAKER ===== */}
-      <section id="speaker" className="sect sect--beige">
-        <div className="wrap">
-          <SectionHead en="SPEAKER" jp="登壇者（ファイナリスト）" />
-          <div className="pitch__people">
-            {day1Pitch.speakers.map((p) => (
-              <Person key={p.name} p={p} />
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* ===== MODERATOR ===== */}
-      <section id="moderator" className="sect">
+      <section id="moderator" className="sect sect--beige">
         <div className="wrap">
           <SectionHead en="MODERATOR" jp="モデレーター" />
           <div className="pitch__people">
@@ -213,96 +286,53 @@ export default function PitchPage() {
         </div>
       </section>
 
-      {/* ===== MERIT ===== */}
-      <section id="merit" className="sect sect--beige">
+      {/* ===== GALLERY（去年の写真） ===== */}
+      <section id="gallery" className="sect">
         <div className="wrap">
-          <SectionHead en="MERIT" jp="登壇するメリット" />
+          <SectionHead en="GALLERY" jp="KID Startup Pitch 2026 フォトギャラリー" />
           <div className="g3">
-            {[
-              { t: "発信・露出", b: "県内最大級のイノベーションイベントで、来場者・投資家・大企業へ直接プレゼンできる。" },
-              { t: "成長支援", b: "受賞者には県のベンチャー支援拠点による伴走支援・事業連携の機会を提供。" },
-              { t: "ネットワーク", b: "審査員・協賛企業・登壇者との交流を通じて、共創・資金調達の接点が生まれる。" },
-            ].map((m) => (
-              <div key={m.t} className="card" style={{ padding: 16 }}>
-                <div style={{ font: "900 15px var(--font-jp)", marginBottom: 8 }}>{m.t}</div>
-                <p style={{ font: "400 11.5px/1.7 sans-serif", color: "#5a574f", margin: 0 }}>{m.b}</p>
+            {GALLERY.map((cap) => (
+              <div key={cap} className="wf-ph" style={{ aspectRatio: "4 / 3", borderRadius: 8 }}>
+                写真：{cap}
               </div>
             ))}
           </div>
-
-          {/* 受賞特典・本選出場特典（2026 反映） */}
-          <div className="g2" style={{ marginTop: 16 }}>
-            <div className="card" style={{ padding: 16 }}>
-              <div style={{ font: "800 13px var(--font-jp)", color: "var(--accent)", marginBottom: 10 }}>
-                受賞特典
-              </div>
-              <ul style={{ margin: 0, paddingLeft: 18, font: "400 12px/1.9 sans-serif", color: "#5a574f" }}>
-                <li>ベンチャー成長促進拠点「SHINみなとみらい」利用権 等</li>
-                <li>神奈川県内の大企業による企業賞</li>
-              </ul>
-            </div>
-            <div className="card" style={{ padding: 16 }}>
-              <div style={{ font: "800 13px var(--font-jp)", color: "var(--accent)", marginBottom: 10 }}>
-                本選出場特典
-              </div>
-              <ul style={{ margin: 0, paddingLeft: 18, font: "400 12px/1.9 sans-serif", color: "#5a574f" }}>
-                <li>本選イベントでのブース出展</li>
-                <li>大企業・自治体・投資家等とのマッチング機会</li>
-                <li>VIPネットワーキング参加権</li>
-                <li>プレスリリース・サイト・SNS・オンラインメディア等による広報機会</li>
-              </ul>
-            </div>
-          </div>
+          <p style={{ font: "400 11px sans-serif", color: "#9a978f", margin: "12px 0 0" }}>
+            ※昨年（KID 2026）の写真を掲載予定。枚数・並びは仮です。
+          </p>
         </div>
       </section>
 
-      {/* ===== SCHEDULE ===== */}
-      <section id="schedule" className="sect">
+      {/* ===== OUTLINE（最下部：開催概要・会場・MAP・観覧予約） ===== */}
+      <section id="outline" className="sect sect--beige section-anchor">
         <div className="wrap">
-          <SectionHead en="SCHEDULE" jp="スケジュール" />
-          <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-            {SCHEDULE.map((s) => (
-              <div
-                key={s.t}
-                className="card"
-                style={{ padding: "14px 18px", display: "flex", gap: 18, alignItems: "baseline", flexWrap: "wrap" }}
-              >
-                <div style={{ font: "800 13px var(--font-mono)", color: "var(--accent)", width: 90, flex: "none" }}>
-                  {s.d}
+          <SectionHead en="OUTLINE" jp="開催概要" />
+          <div className="cols" style={{ gap: 24 }}>
+            <div style={{ flex: 1, display: "flex", flexDirection: "column", gap: 14 }}>
+              {[
+                { k: "開催日時", v: "2027.1.21（木） 00:00–00:00（本選）" },
+                { k: "会 場", v: "BASEGATE 横浜関内（THE LIVE）" },
+                { k: "参加費", v: "無料（要観覧予約）" },
+              ].map((r) => (
+                <div
+                  key={r.k}
+                  style={{ display: "flex", gap: 16, borderBottom: "1px dashed var(--bar)", paddingBottom: 12 }}
+                >
+                  <div style={{ width: 88, font: "700 13px sans-serif", color: "var(--accent)", flex: "none" }}>
+                    {r.k}
+                  </div>
+                  <div style={{ font: "400 12.5px/1.7 sans-serif", color: "var(--body)" }}>{r.v}</div>
                 </div>
-                <div style={{ font: "800 13px var(--font-jp)", width: 120, flex: "none" }}>{s.t}</div>
-                <div style={{ font: "400 12px/1.6 sans-serif", color: "var(--body-2)", flex: 1, minWidth: 200 }}>
-                  {s.b}
-                </div>
+              ))}
+            </div>
+            <div style={{ flex: 1 }}>
+              <div className="wf-ph" style={{ width: "100%", height: 220, borderRadius: 8 }}>
+                GOOGLE MAP
               </div>
-            ))}
-          </div>
-          <p style={{ font: "400 11px sans-serif", color: "#9a978f", margin: "12px 0 0" }}>※日程は仮です。</p>
-        </div>
-      </section>
-
-      {/* ===== ENTRY ===== */}
-      <section id="entry" className="sect sect--beige">
-        <div className="wrap">
-          <SectionHead en="ENTRY" jp="応募要項" />
-          <div style={{ display: "flex", flexDirection: "column", gap: 12, maxWidth: 860 }}>
-            {[
-              { k: "応募対象", v: "神奈川県の社会課題解決に資するビジネスプランを持つ、全国の起業家（起業前も可）" },
-              { k: "対象外", v: "大企業（社内新規事業等）は対象外" },
-              { k: "参加費", v: "無料" },
-              { k: "締切", v: "2027.1.21（木） 00:00 まで" },
-              { k: "注意事項", v: "応募規約に違反した場合等、運営事務局が不適切と判断した場合は参加資格を取り消すことがあります。" },
-            ].map((r) => (
-              <div key={r.k} style={{ display: "flex", gap: 16, borderBottom: "1px dashed var(--bar)", paddingBottom: 12 }}>
-                <div style={{ width: 88, font: "700 13px sans-serif", color: "var(--accent)", flex: "none" }}>
-                  {r.k}
-                </div>
-                <div style={{ font: "400 12.5px/1.7 sans-serif", color: "var(--body)" }}>{r.v}</div>
-              </div>
-            ))}
+            </div>
           </div>
 
-          {/* エントリーは外部フォーム（別サイト）へ遷移。URL は別途差し替え */}
+          {/* 観覧予約は外部フォーム（別サイト）へ遷移。URL は別途差し替え */}
           <div style={{ textAlign: "center", marginTop: 26 }}>
             <a
               href="#"
@@ -311,9 +341,12 @@ export default function PitchPage() {
               className="wf-btnf"
               style={{ padding: "14px 52px", fontSize: 14 }}
             >
-              エントリーフォームへ ↗
+              観覧予約はこちら ↗
             </a>
           </div>
+          <p style={{ font: "400 11px sans-serif", color: "#9a978f", margin: "12px 0 0", textAlign: "center" }}>
+            ※日時・会場は仮です。
+          </p>
         </div>
       </section>
 
