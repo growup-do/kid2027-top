@@ -54,7 +54,7 @@ export function SessionDay2() {
       </div>
       <Day2Grid />
       <p style={{ font: "400 11px sans-serif", color: "#9a978f", margin: "12px 0 0" }}>
-        ※横にスクロールできます。各セッションをタップすると詳細（登壇者・概要）が開きます（詳細ページは別途）。
+        ※MAIN STAGE 以外のステージ（SESSION ROOM A/B・DEMO STAGE・WORKSHOP）のプログラムは順次公開します。各セッションをタップすると詳細（登壇者・概要）が開きます（詳細ページは別途）。
       </p>
     </section>
   );
@@ -120,16 +120,32 @@ function Person({ p }: { p: PitchPerson }) {
 /* ------------------------------------------------------------------ *
  * DAY2: 番組表グリッド（NOW バー・終了グレー。開催中は赤枠を付けない）
  * ------------------------------------------------------------------ */
+// MAIN STAGE 以外は内容未確定のため、1本の「順次公開」列にまとめて表示する。
+// 公開時は true にすると従来の 5 列番組表に戻る。
+const OTHER_STAGES_PUBLISHED = false;
+
 function Day2Grid() {
   const d = dayData[2];
+  // 表示列（index 0 = MAIN STAGE）。未公開時は 2 列構成。
+  const columns = OTHER_STAGES_PUBLISHED
+    ? d.stages.map((name, i) => ({ name, tint: STAGE_TINT[i], text: STAGE_TINT_TEXT[i] }))
+    : [
+        { name: d.stages[0], tint: STAGE_TINT[0], text: STAGE_TINT_TEXT[0] },
+        { name: "順次公開", tint: "#efede7", text: "#8a877f" },
+      ];
+  const otherStages = d.stages.slice(1);
+  const colCount = columns.length;
+  const gridTemplateColumns = OTHER_STAGES_PUBLISHED
+    ? "64px repeat(5, minmax(128px, 1fr))"
+    : "64px 4fr 1fr"; // MAIN 80% / 順次公開 20%
   const base = toMin(d.base);
   const end = toMin(d.end);
   const now = d.now != null ? toMin(d.now) : null;
   const slots = (end - base) / 30;
 
   // ステージ見出し
-  const stages = d.stages.map((name, i) => ({
-    name,
+  const stages = columns.map((c, i) => ({
+    name: c.name,
     style: {
       gridColumn: i + 2,
       gridRow: 1,
@@ -141,8 +157,8 @@ function Day2Grid() {
       justifyContent: "center",
       textAlign: "center" as const,
       padding: "0 8px",
-      background: STAGE_TINT[i],
-      color: STAGE_TINT_TEXT[i],
+      background: c.tint,
+      color: c.text,
       font: "800 12px 'Zen Kaku Gothic New',sans-serif",
       borderBottom: "1px solid #e3e0d9",
       borderRight: "1px solid #ece9e2",
@@ -175,7 +191,7 @@ function Day2Grid() {
     hourLines.push({
       key: h,
       style: {
-        gridColumn: "2 / span 5",
+        gridColumn: `2 / span ${colCount}`,
         gridRow: row,
         borderTop: "1px solid #eae7e0",
         pointerEvents: "none",
@@ -184,7 +200,8 @@ function Day2Grid() {
   }
 
   // セッション（開催中でも枠は通常のまま。終了のみグレー＋「終了」バッジ）
-  const sessions = d.sessions.map((s, idx) => {
+  const visibleSessions = OTHER_STAGES_PUBLISHED ? d.sessions : d.sessions.filter((s) => s.st === 0);
+  const sessions = visibleSessions.map((s, idx) => {
     const sm = toMin(s.s);
     const em = toMin(s.e);
     const rs = 2 + (sm - base) / 30;
@@ -301,9 +318,9 @@ function Day2Grid() {
         ref={gridRef}
         style={{
           position: "relative",
-          minWidth: 760,
+          minWidth: OTHER_STAGES_PUBLISHED ? 760 : 640,
           display: "grid",
-          gridTemplateColumns: "64px repeat(5, minmax(128px, 1fr))",
+          gridTemplateColumns,
           gridAutoFlow: "dense",
           gridTemplateRows,
         }}
@@ -360,6 +377,56 @@ function Day2Grid() {
             </div>
           </div>
         ))}
+        {/* 順次公開プレースホルダー（MAIN STAGE 以外の 4 ステージ分） */}
+        {!OTHER_STAGES_PUBLISHED && (
+          <div
+            style={{
+              gridColumn: 3,
+              gridRow: `2 / ${2 + slots}`,
+              margin: 3,
+              borderRadius: 7,
+              border: "1px dashed #c9c6bf",
+              background:
+                "repeating-linear-gradient(135deg, transparent 0 10px, rgba(0,0,0,.025) 10px 20px), #f7f5ef",
+              display: "flex",
+              flexDirection: "column",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: 10,
+              padding: 10,
+              textAlign: "center",
+              position: "sticky",
+              top: HEAD,
+              alignSelf: "start",
+              height: `min(${slots * SLOT - 6}px, calc(100vh - ${HEAD + 120}px))`,
+              zIndex: 2,
+            }}
+          >
+            <div style={{ font: "900 13px 'Zen Kaku Gothic New',sans-serif", color: "#5a574f" }}>
+              順次公開
+            </div>
+            <div style={{ font: "700 9.5px 'JetBrains Mono',monospace", color: "#9a978f", letterSpacing: ".06em" }}>
+              COMING SOON
+            </div>
+            <div style={{ display: "flex", flexDirection: "column", gap: 4, marginTop: 4 }}>
+              {otherStages.map((name, i) => (
+                <span
+                  key={name}
+                  style={{
+                    font: "700 9.5px 'Zen Kaku Gothic New',sans-serif",
+                    color: STAGE_TINT_TEXT[i + 1],
+                    background: STAGE_TINT[i + 1],
+                    padding: "2px 6px",
+                    borderRadius: 4,
+                    whiteSpace: "nowrap",
+                  }}
+                >
+                  {name}
+                </span>
+              ))}
+            </div>
+          </div>
+        )}
         {/* NOW バー（現在時刻。開催中セッションを横切るだけ・赤枠は付けない） */}
         {nowShow && (
           <div
@@ -436,23 +503,23 @@ function Day2Grid() {
             gridAutoFlow: "column",
           }}
         >
-          {d.stages.map((name, i) => (
+          {columns.map((c) => (
             <div
-              key={name}
+              key={c.name}
               style={{
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",
                 textAlign: "center",
                 padding: "0 8px",
-                background: STAGE_TINT[i],
-                color: STAGE_TINT_TEXT[i],
+                background: c.tint,
+                color: c.text,
                 font: "800 12px 'Zen Kaku Gothic New',sans-serif",
                 borderBottom: "1px solid #e3e0d9",
                 borderRight: "1px solid #ece9e2",
               }}
             >
-              {name}
+              {c.name}
             </div>
           ))}
         </div>
